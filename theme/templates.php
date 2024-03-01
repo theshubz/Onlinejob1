@@ -96,14 +96,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo web_root; ?>index.php"><b>OPPORTUNITY&nbsp;JUNCTION<b></a>
+                    <a class="navbar-brand" href="index.php"><b>OPPORTUNITY&nbsp;JUNCTION<b></a>
                 </div>
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
-                        <li class="<?php echo !isset($_GET['q'])? 'active' :''?>"><a href="<?php echo web_root; ?>index.php"><h4>Home</h4></a></li> 
-                        <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='About'){ echo 'active'; }else{ echo ''; }}  ?>"><a href="<?php echo web_root; ?>index.php?q=About"><h4>About Us<h4></a></li>
+                        <li class="<?php echo !isset($_GET['q'])? 'active' :''?>"><a href="index.php"><h4>Home</h4></a></li> 
+                        <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='About'){ echo 'active'; }else{ echo ''; }}  ?>"><a href="index.php?q=About"><h4>About Us<h4></a></li>
 
-						<li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='hiring'){ echo 'active'; }else{ echo ''; }} ?>"><a href="<?php echo web_root; ?>index.php?q=hiring"><h4>Hiring Now</h4></a></li>
+						<li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='hiring'){ echo 'active'; }else{ echo ''; }} ?>"><a href=">index.php?q=hiring"><h4>Hiring Now</h4></a></li>
 
                       <li class="dropdown <?php  if(isset($_GET['q'])) { if($_GET['q']=='category'){ echo 'active'; }else{ echo ''; }}  ?>">
                           <a href="#" data-toggle="dropdown" class="dropdown-toggle"><h4>Popular Jobs </h4><b class="caret"></b></a>
@@ -135,13 +135,13 @@
                             ?> 
                           </ul>
                        </li> 
-                        <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='company'){ echo 'active'; }else{ echo ''; }}  ?>"><a href="<?php echo web_root; ?>index.php?q=company"><h4>Company</h4></a></li>
+                        <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='company'){ echo 'active'; }else{ echo ''; }}  ?>"><a href="index.php?q=company"><h4>Company</h4></a></li>
                         <li class="dropdown">
                           <a href="#" data-toggle="dropdown" class="dropdown-toggle"><h4>Job Search</h4> <b class="caret"></b></a>
                           <ul class="dropdown-menu">
-                              <li><a href="<?php echo web_root; ?>index.php?q=search-company">Job By Company</a></li>
+                              <li><a href="index.php?q=search-company">Job By Company</a></li>
                           
-                              <li><a href="<?php echo web_root; ?>index.php?q=search-jobtitle">Job By Title</a></li>
+                              <li><a href="index.php?q=search-jobtitle">Job By Title</a></li>
                          
                           </ul>
                        </li> 
@@ -198,10 +198,10 @@
         <div class="widget">
           <h4 class="widgetheading">Quick Links</h4>
           <ul class="link-list">
-            <li><a href="<?php echo web_root; ?>index.php">Home</a></li>
-            <li><a href="<?php echo web_root; ?>index.php?q=company">Company</a></li>
-            <li><a href="<?php echo web_root; ?>index.php?q=hiring">Hiring</a></li>
-            <li><a href="<?php echo web_root; ?>index.php?q=About">About us</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="index.php?q=company">Company</a></li>
+            <li><a href="index.php?q=hiring">Hiring</a></li>
+            <li><a href="index.php?q=About">About us</a></li>
           </ul>
         </div>
       </div>
@@ -242,34 +242,34 @@
   </footer>
 </div>
 
-<script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.js"></script>
-<script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.easing.1.3.js"></script>
-<script src="<?php echo web_root; ?>plugins/home-plugins/js/bootstrap.min.js"></script>
+<script src="plugins/home-plugins/js/jquery.js"></script>
+<script src="plugins/home-plugins/js/jquery.easing.1.3.js"></script>
+<script src="plugins/home-plugins/js/bootstrap.min.js"></script>
  
 
-<script type="text/javascript" src="<?php echo web_root; ?>plugins/dataTables/dataTables.bootstrap.min.js" ></script>  
-<script src="<?php echo web_root; ?>plugins/datatables/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="plugins/dataTables/dataTables.bootstrap.min.js" ></script>  
+<script src="plugins/datatables/jquery.dataTables.min.js"></script> 
 
-<script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/bootstrap-datepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/locales/bootstrap-datetimepicker.uk.js" charset="UTF-8"></script>
+<script type="text/javascript" src="plugins/datepicker/bootstrap-datepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="plugins/datepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="plugins/datepicker/locales/bootstrap-datetimepicker.uk.js" charset="UTF-8"></script>
 
-<script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.js"></script> 
-<script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script> 
-<script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.extensions.js"></script> 
+<script type="text/javascript" language="javascript" src="plugins/input-mask/jquery.inputmask.js"></script> 
+<script type="text/javascript" language="javascript" src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script> 
+<script type="text/javascript" language="javascript" src="plugins/input-mask/jquery.inputmask.extensions.js"></script> 
 
-<script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.fancybox.pack.js"></script>
-<script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.fancybox-media.js"></script>  
-<script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.flexslider.js"></script>
-<script src="<?php echo web_root; ?>plugins/home-plugins/js/animate.js"></script>
+<script src="plugins/home-plugins/js/jquery.fancybox.pack.js"></script>
+<script src="plugins/home-plugins/js/jquery.fancybox-media.js"></script>  
+<script src="plugins/home-plugins/js/jquery.flexslider.js"></script>
+<script src="plugins/home-plugins/js/animate.js"></script>
 
 
 
-<script src="<?php echo web_root; ?>plugins/home-plugins/js/modernizr.custom.js"></script>
-<script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.isotope.min.js"></script>
-<script src="<?php echo web_root; ?>plugins/home-plugins/js/jquery.magnific-popup.min.js"></script>
-<script src="<?php echo web_root; ?>plugins/home-plugins/js/animate.js"></script>
-<script src="<?php echo web_root; ?>plugins/home-plugins/js/custom.js"></script> 
+<script src="plugins/home-plugins/js/modernizr.custom.js"></script>
+<script src="plugins/home-plugins/js/jquery.isotope.min.js"></script>
+<script src="plugins/home-plugins/js/jquery.magnific-popup.min.js"></script>
+<script src="plugins/home-plugins/js/animate.js"></script>
+<script src="plugins/home-plugins/js/custom.js"></script> 
 
 
  <script type="text/javascript">
