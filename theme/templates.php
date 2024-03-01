@@ -122,7 +122,7 @@ if ($result) {
         if (isset($_GET['search']) && $row['CATEGORY'] == $_GET['search']) {
             $viewresult = '<li class="active"><a href="'.web_root.'index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
         } else {
-            $viewresult = '<li><a href="'.web_root.'index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
+            $viewresult = '<li><a href="index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
         }
         echo $viewresult;
     }
