@@ -108,31 +108,31 @@
                       <li class="dropdown <?php  if(isset($_GET['q'])) { if($_GET['q']=='category'){ echo 'active'; }else{ echo ''; }}  ?>">
                           <a href="#" data-toggle="dropdown" class="dropdown-toggle"><h4>Popular Jobs </h4><b class="caret"></b></a>
                           <ul class="dropdown-menu">
-                            <?php 
-                            $sql = "SELECT * FROM `tblcategory` LIMIT 10";
-                            $mydb->setQuery($sql)->execute();
-                            $cur = $mydb->loadResultList();
+                          <?php 
+$sql = "SELECT * FROM `tblcategory` LIMIT 10";
 
-                            foreach ($cur as $result) {
-                             
+try {
+    // Set the SQL query and execute it
+    $mydb->setQuery($sql)->execute();
+    
+    // Load the query results
+    $cur = $mydb->loadResultList();
 
-                                if (isset($_GET['search'])) {
-                                 
-                                   if ($result->CATEGORY==$_GET['search']) {
-                                   
-                                    $viewresult = '<li class="active"><a href="'.web_root.'index.php?q=category&search='.$result->CATEGORY.'">'.$result->CATEGORY.' Jobs</a></li>';
-                                   }else{
-                                    $viewresult = '<li><a href="'.web_root.'index.php?q=category&search='.$result->CATEGORY.'">'.$result->CATEGORY.' Jobs</a></li>';
-                                   }
-                                }else{
-                                    $viewresult = '<li><a href="'.web_root.'index.php?q=category&search='.$result->CATEGORY.'">'.$result->CATEGORY.' Jobs</a></li>';
-                                } 
+    // Loop through the results and display them
+    foreach ($cur as $result) {
+        if (isset($_GET['search']) && $result->CATEGORY == $_GET['search']) {
+            $viewresult = '<li class="active"><a href="'.web_root.'index.php?q=category&search='.$result->CATEGORY.'">'.$result->CATEGORY.' Jobs</a></li>';
+        } else {
+            $viewresult = '<li><a href="'.web_root.'index.php?q=category&search='.$result->CATEGORY.'">'.$result->CATEGORY.' Jobs</a></li>';
+        }
+        echo $viewresult;
+    }
+} catch (Exception $e) {
+    // Handle any exceptions that occur during database operation
+    echo 'Error: ' . $e->getMessage();
+}
+?>
 
-                                echo $viewresult;
-
-                              }
-
-                            ?> 
                           </ul>
                        </li> 
                         <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='company'){ echo 'active'; }else{ echo ''; }}  ?>"><a href="index.php?q=company"><h4>Company</h4></a></li>
