@@ -1,5 +1,5 @@
 <?php
-require_once(LIB_PATH.DS."config.php");
+require_once("config.php");
 class Database {
 	var $sql_string = '';
 	var $error_no = 0;
