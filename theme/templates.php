@@ -5,17 +5,17 @@
 
 
 <link href="plugins/home-plugins/css/bootstrap.min.css" rel="stylesheet" />
-<link href="<?php echo web_root; ?>plugins/home-plugins/css/fancybox/jquery.fancybox.css" rel="stylesheet"> 
-<link href="<?php echo web_root; ?>plugins/home-plugins/css/flexslider.css" rel="stylesheet" /> 
-<link href="<?php echo web_root; ?>plugins/home-plugins/css/style.css" rel="stylesheet" />
-<?php echo web_root;?> 
-<link rel="stylesheet" href="<?php echo web_root;?>plugins/font-awesome/css/font-awesome.min.css"> 
+<link href="plugins/home-plugins/css/fancybox/jquery.fancybox.css" rel="stylesheet"> 
+<link href="plugins/home-plugins/css/flexslider.css" rel="stylesheet" /> 
+<link href="plugins/home-plugins/css/style.css" rel="stylesheet" />
+ 
+<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css"> 
 
-<link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/jquery.dataTables.min.css"> 
-<link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/jquery.dataTables_themeroller.css"> 
+<link rel="stylesheet" href="plugins/dataTables/jquery.dataTables.min.css"> 
+<link rel="stylesheet" href="plugins/dataTables/jquery.dataTables_themeroller.css"> 
 
-<link href="<?php echo web_root; ?>plugins/datepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-<link href="<?php echo web_root; ?>plugins/datepicker/datepicker3.css" rel="stylesheet" media="screen">
+<link href="plugins/datepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<link href="plugins/datepicker/datepicker3.css" rel="stylesheet" media="screen">
  
 
 <style type="text/css">
