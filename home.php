@@ -50,6 +50,8 @@
     </div>
 
     <?php 
+                              $mydb = new mysqli('opportunityjunction.mysql.database.azure.com', 'shubhamj', 'omkar@29', 'erisdb');
+
       $sql = "SELECT * FROM `tblcompany`";
       $mydb->setQuery($sql);
       $comp = $mydb->loadResultList();
@@ -84,7 +86,8 @@
       </div>
       <div class="row">
         <div class="col-md-12 ">
-          <?php 
+          <?php                           $mydb = new mysqli('opportunityjunction.mysql.database.azure.com', 'shubhamj', 'omkar@29', 'erisdb');
+
             $sql = "SELECT * FROM `tblcategory`";
             $mydb->setQuery($sql);
             $cur = $mydb->loadResultList();

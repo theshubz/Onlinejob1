@@ -1,5 +1,7 @@
 <?php 
 function get_categories(){
+	$mydb = new mysqli('opportunityjunction.mysql.database.azure.com', 'shubhamj', 'omkar@29', 'erisdb');
+
 	$mydb->setQuery("SELECT * FROM `tblcategory`");
 	$cur = $mydb->loadResultList();
 
