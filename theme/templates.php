@@ -111,27 +111,26 @@
                           <?php 
 $sql = "SELECT * FROM `tblcategory` LIMIT 10";
 
-try {
-    // Set the SQL query and execute it
-    $mydb->setQuery($sql)->execute();
-    
-    // Load the query results
-    $cur = $mydb->loadResultList();
+// Assuming $mydb is a MySQLi database connection object
+$result = $mydb->query($sql);
 
-    // Loop through the results and display them
-    foreach ($cur as $result) {
-        if (isset($_GET['search']) && $result->CATEGORY == $_GET['search']) {
-            $viewresult = '<li class="active"><a href="'.web_root.'index.php?q=category&search='.$result->CATEGORY.'">'.$result->CATEGORY.' Jobs</a></li>';
+if ($result) {
+    // Query executed successfully
+    while ($row = $result->fetch_assoc()) {
+        // Process each row of the result set
+        if (isset($_GET['search']) && $row['CATEGORY'] == $_GET['search']) {
+            $viewresult = '<li class="active"><a href="'.web_root.'index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
         } else {
-            $viewresult = '<li><a href="'.web_root.'index.php?q=category&search='.$result->CATEGORY.'">'.$result->CATEGORY.' Jobs</a></li>';
+            $viewresult = '<li><a href="'.web_root.'index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
         }
         echo $viewresult;
     }
-} catch (Exception $e) {
-    // Handle any exceptions that occur during database operation
-    echo 'Error: ' . $e->getMessage();
+} else {
+    // Error handling if the query fails
+    echo "Error: " . $mydb->error;
 }
 ?>
+
 
                           </ul>
                        </li> 
