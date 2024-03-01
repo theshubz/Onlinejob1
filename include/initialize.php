@@ -7,7 +7,7 @@ defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 defined('SITE_ROOT') ? null : define ('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'].DS.'Onlinejob');
 
 // Define LIB_PATH if not defined
-defined('LIB_PATH') ? null : define ('LIB_PATH',SITE_ROOT.DS.'include');
+defined('LIB_PATH') ? null : define ('LIB_PATH', SITE_ROOT.DS.'include');
 
 // Include necessary files
 $required_files = [
@@ -25,13 +25,21 @@ $required_files = [
     "database.php"
 ];
 
-foreach ($required_files as $file) {
-    $file_path = LIB_PATH . DS . $file;
-    if (file_exists($file_path) && is_readable($file_path)) {
-        require_once($file_path);
-    } else {
-        // Handle error if file doesn't exist or not readable
-        die("Error: Required file $file not found or not readable.");
+try {
+    foreach ($required_files as $file) {
+        $file_path = LIB_PATH . DS . $file;
+        if (file_exists($file_path) && is_readable($file_path)) {
+            require_once($file_path);
+        } else {
+            throw new Exception("Required file $file not found or not readable.");
+        }
     }
+} catch (Exception $e) {
+    // Handle the exception
+    echo "Error: " . $e->getMessage();
+    // You can also log the error or redirect to an error page
+    // header('Location: error_page.php');
+    // exit(); // Stop further execution
 }
+
 ?>
