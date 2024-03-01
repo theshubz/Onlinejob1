@@ -83,6 +83,6 @@ switch ($view) {
 } 
 
 // Include the templates file to display the content
-require(__DIR__ .'theme/templates.php');
+require('theme/templates.php');
 
 ?>
