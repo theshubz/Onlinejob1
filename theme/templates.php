@@ -4,7 +4,7 @@
 <title>Opportunity Junction  <?php echo $title;?></title>
 
 
-<link href="<?php echo web_root; ?>plugins/home-plugins/css/bootstrap.min.css" rel="stylesheet" />
+<link href="plugins/home-plugins/css/bootstrap.min.css" rel="stylesheet" />
 <link href="<?php echo web_root; ?>plugins/home-plugins/css/fancybox/jquery.fancybox.css" rel="stylesheet"> 
 <link href="<?php echo web_root; ?>plugins/home-plugins/css/flexslider.css" rel="stylesheet" /> 
 <link href="<?php echo web_root; ?>plugins/home-plugins/css/style.css" rel="stylesheet" />
