@@ -14,14 +14,14 @@ class Database {
 	}
 	
 	public function open_connection() {
-		$this->conn = new mysqli(server,user,pass);
-		if(!$this->conn){
+		$conn = new mysqli(server,user,pass);
+		if(!$conn){
 			echo "Problem in database connection! Contact administrator!";
 			exit();
 		 
 		}else{
 
-			$db_select = mysqli_select_db($this->conn,database_name);
+			$db_select = mysqli_select_db($conn,database_name);
 			if (!$db_select) {
 				echo "Problem in selecting database! Contact administrator!";
 				exit();
