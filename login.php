@@ -42,7 +42,7 @@
                           </form> 
                           
                         
-                          <a href="<?php echo web_root; ?>index.php?q=register" class="text-center">New User ? Register first</a>
+                          <a href="index.php?q=register" class="text-center">New User ? Register first</a>
 
                         </div>
                        
