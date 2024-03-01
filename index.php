@@ -83,6 +83,12 @@ switch ($view) {
 } 
 
 // Include the templates file to display the content
-require('theme/templates.php');
-
+$templates_file = LIB_PATH . DS . 'theme' . DS . 'templates.php';
+if (file_exists($templates_file) && is_readable($templates_file)) {
+    require($templates_file);
+} else {
+    // Handle the error if the file doesn't exist or is not readable
+    echo "Error: The templates file is missing or not readable.";
+    // You can log the error or display a generic error message to the user
+}
 ?>
