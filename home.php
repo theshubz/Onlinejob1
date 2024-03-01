@@ -53,7 +53,7 @@
                               $mydb = new mysqli('opportunityjunction.mysql.database.azure.com', 'shubhamj', 'omkar@29', 'erisdb');
 
       $sql = "SELECT * FROM `tblcompany`";
-      $mydb->setQuery($sql);
+      $mydb->query($sql);
       $comp = $mydb->loadResultList();
 
 
