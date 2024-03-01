@@ -83,5 +83,6 @@ switch ($view) {
 } 
 
 // Include the templates file to display the content
-require_once(LIB_PATH . DS . 'theme' . DS . 'templates.php');
+require_once(__DIR__ . "/theme/templates.php");
+
 ?>
