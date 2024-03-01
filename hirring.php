@@ -65,7 +65,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <a href="<?php echo web_root; ?>index.php?q=apply&job=<?php echo $result->JOBID;?>&view=personalinfo" class="btn btn-main btn-next-tab">Apply Now !</a>
+                                        <a href="index.php?q=apply&job=<?php echo $result->JOBID;?>&view=personalinfo" class="btn btn-main btn-next-tab">Apply Now !</a>
                                     </div>
                                 </div>
                             </div> 
