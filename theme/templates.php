@@ -109,6 +109,7 @@
                           <a href="#" data-toggle="dropdown" class="dropdown-toggle"><h4>Popular Jobs </h4><b class="caret"></b></a>
                           <ul class="dropdown-menu">
                           <?php 
+                          $mydb = new mysqli('opportunityjunction.mysql.database.azure.com', 'shubhamj', 'omkar@29', 'erisdb');
 $sql = "SELECT * FROM `tblcategory` LIMIT 10";
 
 // Assuming $mydb is a MySQLi database connection object
