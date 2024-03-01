@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Opportunity Junction  <?php echo $title;?></title>
+<title>Opportunity Junction  </title>
 
 
 <link href="plugins/home-plugins/css/bootstrap.min.css" rel="stylesheet" />
@@ -61,10 +61,12 @@
             <div class="row">
               <div class="col-md-12">      
                 <p class="pull-left hidden-xs"><i class="fa fa-phone"></i><b>Contact no. (+91) 9975616377</b></p>
-                <?php if (isset($_SESSION['APPLICANTID'])) { 
+                <?php
+                	$mydb = new mysqli('opportunityjunction.mysql.database.azure.com', 'shubhamj', 'omkar@29', 'erisdb');
+                  if (isset($_SESSION['APPLICANTID'])) { 
 
                     $sql = "SELECT count(*) as 'COUNTNOTIF' FROM `tbljob` ORDER BY `DATEPOSTED` DESC";
-                    $mydb->setQuery($sql);
+                    $mydb->query($sql);
                     $showNotif = $mydb->loadSingleResult();
                     $notif =isset($showNotif->COUNTNOTIF) ? $showNotif->COUNTNOTIF : 0;
 
@@ -73,7 +75,7 @@
                     $appl  = $applicant->single_applicant($_SESSION['APPLICANTID']);
 
                     $sql ="SELECT count(*) as 'COUNT' FROM `tbljobregistration` WHERE `PENDINGAPPLICATION`=0 AND `HVIEW`=0 AND `APPLICANTID`='{$appl->APPLICANTID}'";
-                    $mydb->setQuery($sql);
+                    $mydb->query($sql);
                     $showMsg = $mydb->loadSingleResult();
                     $msg =isset($showMsg->COUNT) ? $showMsg->COUNT : 0;
 
