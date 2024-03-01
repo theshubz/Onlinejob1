@@ -110,7 +110,7 @@
                           <ul class="dropdown-menu">
                             <?php 
                             $sql = "SELECT * FROM `tblcategory` LIMIT 10";
-                            $mydb->setQuery($sql);
+                            $mydb->setQuery($sql)->execute();
                             $cur = $mydb->loadResultList();
 
                             foreach ($cur as $result) {
