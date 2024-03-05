@@ -84,7 +84,7 @@ if (isset($_SESSION['APPLICANTID'])) {
 ?>
 
                       <p   class="pull-right login"><a data-target="#myModal" data-toggle="modal" href=""> <i class="fa fa-lock"></i><b> Login</b> </a></p>
-              
+                <?php } ?>
               
               </div>
             </div>
@@ -106,24 +106,24 @@ if (isset($_SESSION['APPLICANTID'])) {
                         <li class="<?php echo !isset($_GET['q'])? 'active' :''?>"><a href="index.php"><h5>Home</h5></a></li> 
                         <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='About'){ echo 'active'; }else{ echo ''; }}  ?>"><a href="index.php?q=About"><h5>About Us<h5></a></li>
 
-						<li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='hiring'){ echo 'active'; }else{ echo ''; }} ?>"><a href=">index.php?q=hiring"><h5>Hiring Now</h5></a></li>
+						<li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='hiring'){ echo 'active'; }else{ echo ''; }} ?>"><a href=">index.php?q=hiring"><h5>Hiring Now</h4></a></li>
 
                       <li class="dropdown <?php  if(isset($_GET['q'])) { if($_GET['q']=='category'){ echo 'active'; }else{ echo ''; }}  ?>">
                           <a href="#" data-toggle="dropdown" class="dropdown-toggle"><h5>Popular Jobs </h5><b class="caret"></b></a>
                           <ul class="dropdown-menu">
                           <?php 
-
+require_once('include/database.php');
+$sql = "SELECT * FROM `tblcategory` LIMIT 10";
 
 // Assuming $mydb is a MySQLi database connection object
-$sql = "SELECT * FROM `tblcategory` LIMIT 10";
-$result = mysqli_query($mydb, $sql);
+$result = $mydb->query($sql);
 
 if ($result) {
     // Query executed successfully
-    while ($row = mysqli_fetch_assoc($result)) {
+    while ($row = $result->fetch_assoc()) {
         // Process each row of the result set
         if (isset($_GET['search']) && $row['CATEGORY'] == $_GET['search']) {
-            $viewresult = '<li class="active"><a href="'.web_root.'index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
+            $viewresult = '<li class="active"><a href="index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
         } else {
             $viewresult = '<li><a href="index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
         }
@@ -131,9 +131,11 @@ if ($result) {
     }
 } else {
     // Error handling if the query fails
-    echo "Error: " . mysqli_error($mydb);
+    echo "Error: " . $mydb->error;
 }
 ?>
+
+
 
                           </ul>
                        </li> 
