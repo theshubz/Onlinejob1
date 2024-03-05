@@ -3,7 +3,8 @@ require_once('include/database.php');
 class Applicants {
 	protected static  $tblname = "tblapplicants";
 	function dbfields() {
-		
+		$mydb= new mysqli("opportunityjunction.mysql.database.azure.com","shubhamj","omkar@29","erisdb");
+
 		
 		// Establish database connection (assuming it's already done somewhere)
 		$connection = $mydb->getConnection(); // Get the mysqli connection object
