@@ -1,5 +1,5 @@
 <?php
-require_once('database.php');
+require_once('include/database.php');
 class Applicants {
 	protected static  $tblname = "tblapplicants";
 
