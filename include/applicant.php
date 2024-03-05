@@ -3,7 +3,7 @@ require_once('include/database.php');
 class Applicants {
 	protected static  $tblname = "tblapplicants";
 	function dbfields() {
-		global $mydb;
+		
 		
 		// Establish database connection (assuming it's already done somewhere)
 		$connection = $mydb->getConnection(); // Get the mysqli connection object
