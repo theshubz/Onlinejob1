@@ -95,15 +95,14 @@ require_once('include/database.php');
 
 
 $sql = "SELECT * FROM `tblcategory`";
-$mydb->setQuery($sql);
-$curResult = $mydb->query();
+$curResult = mysqli_query($mydb, $sql);
 
 if ($curResult) {
-while ($result = $curResult->fetch_object()) {
-   echo '<div class="col-md-3" style="font-size:15px;padding:5px">* <a href="index.php?q=category&search='.$result->CATEGORY.'">'.$result->CATEGORY.'</a></div>';
-}
+    while ($result = mysqli_fetch_object($curResult)) {
+        echo '<div class="col-md-3" style="font-size:15px;padding:5px">* <a href="index.php?q=category&search='.$result->CATEGORY.'">'.$result->CATEGORY.'</a></div>';
+    }
 } else {
-echo "Error executing query: " . $mydb->error;
+    echo "Error executing query: " . mysqli_error($conn);
 }
 ?>
 
