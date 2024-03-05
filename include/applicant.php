@@ -1,41 +1,13 @@
 <?php
 require_once('include/database.php');
 class Applicants {
-	protected static  $tblname = "tblapplicants";		$mydb= new mysqli("opportunityjunction.mysql.database.azure.com","shubhamj","omkar@29","erisdb");
+	protected static  $tblname = "tblapplicants";
 
-	function dbfields() {
+	function dbfields () {
+		global $mydb;
+		return $mydb->getfieldsononetable(self::$tblname);
 
-		
-		// Establish database connection (assuming it's already done somewhere)
-		
-		// Escape the table name to prevent SQL injection
-		$tblname = $connection->real_escape_string(self::$tblname);
-	
-		// Query to fetch column information from the table
-		$query = "SHOW COLUMNS FROM $tblname";
-	
-		// Execute the query
-		$result = $connection->query($query);
-	
-		if (!$result) {
-			// Handle error, for example:
-			die("Error executing query: " . $connection->error);
-		}
-	
-		// Fetch column names
-		$fields = array();
-		while ($row = $result->fetch_assoc()) {
-			$fields[] = $row['Field'];
-		}
-	
-		// Free the result set
-		$result->free();
-	
-		return $fields;
 	}
-	
-	
-	
 	function listofapplicant(){
 		global $mydb;
 		$mydb->setQuery("SELECT * FROM ".self::$tblname);
@@ -60,47 +32,35 @@ class Applicants {
 	}
 	 
 	function single_applicant($id=""){
-		global $mydb;
-		$mydb->setQuery("SELECT * FROM ".self::$tblname." 
-			WHERE APPLICANTID= '{$id}' LIMIT 1");
-		$cur = $mydb->executeQuery();
-		$row = $mydb->fetchAssoc($cur); // Fetch the result as an associative array
-		return $row;
+			global $mydb;
+			$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+				Where APPLICANTID= '{$id}' LIMIT 1");
+			$cur = $mydb->loadSingleResult();
+			return $cur;
 	}
-	
 	function select_applicant($id=""){
-		global $mydb;
-		$mydb->setQuery("SELECT * FROM ".self::$tblname." 
-			WHERE APPLICANTID= '{$id}' LIMIT 1");
-		$cur = $mydb->executeQuery();
-		$row = $mydb->fetchAssoc($cur); // Fetch the result as an associative array
-		return $row;
+			global $mydb;
+			$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+				Where APPLICANTID= '{$id}' LIMIT 1");
+			$cur = $mydb->loadSingleResult();
+			return $cur;
 	}
-	
-	function applicantAuthentication($U_USERNAME, $h_pass){
+	function applicantAuthentication($U_USERNAME,$h_pass){
 		global $mydb;
-		$mydb->setQuery("SELECT * FROM `tblapplicants` WHERE `USERNAME`='$U_USERNAME' AND `PASS`='$h_pass'");
+		$mydb->setQuery("SELECT * FROM `tblapplicants` WHERE `USERNAME`='".$U_USERNAME."' AND `PASS`='".$h_pass."'");
 		$cur = $mydb->executeQuery();
-		
-		if($cur === false){
-			die($mydb->getLastError()); // Use appropriate error handling
+		if($cur==false){
+			die(mysql_error());
 		}
-		
-		$row_count = $mydb->num_rows($cur); // Get the number of rows returned
-		if ($row_count == 1){
-			// Fetch the row as an associative array
-			$emp_found = $mydb->fetchAssoc($cur);
-			
-			// Set session variables
-			$_SESSION['APPLICANTID'] = $emp_found['APPLICANTID'];
-			$_SESSION['USERNAME'] = $emp_found['USERNAME'];
-			
-			return true;
-		} else {
-			return false;
-		}
-	
-	
+		$row_count = $mydb->num_rows($cur);//get the number of count
+		 if ($row_count == 1){
+		 $emp_found = $mydb->loadSingleResult(); 
+		 	$_SESSION['APPLICANTID']   		= $emp_found->APPLICANTID; 
+		 	$_SESSION['USERNAME'] 			= $emp_found->USERNAME;  
+		   return true;
+		 }else{
+		 	return false;
+		 }
 	}
 
 	 
