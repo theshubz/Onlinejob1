@@ -2,11 +2,18 @@
 require_once('include/database.php');
 class Applicants {
 	protected static  $tblname = "tblapplicants";
-
-	function dbfields () {
+	function dbfields() {
 		global $mydb;
-		return $mydb->getFieldsOnOneTable(self::$tblname);
+		$fields = $mydb->getFieldsOnOneTable(self::$tblname);
+	
+		if ($fields === false) {
+			// Handle error, for example:
+			die("Error retrieving fields: " . $mydb->getLastError());
+		}
+	
+		return $fields;
 	}
+	
 	function listofapplicant(){
 		global $mydb;
 		$mydb->setQuery("SELECT * FROM ".self::$tblname);
