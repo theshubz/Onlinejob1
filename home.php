@@ -48,19 +48,17 @@
    <br/>
  </div>
 </div>
-<?php
+<?php 
 require_once('include/database.php');
 
-// Assuming you have a database connection object $mydb from database.php
+// Assuming you have a database connection object $conn from database.php
 
 $sql = "SELECT * FROM `tblcompany`";
-$mydb->setQuery($sql);
-$compResult = $mydb->query();
+$result = mysqli_query($conn, $sql);
+$num = mysqli_num_rows($result);
 
-if ($compResult) {
-    $comp = $compResult->fetch_all(MYSQLI_ASSOC);
-
-    foreach ($comp as $company) {
+if ($num > 0) {
+    while ($company = mysqli_fetch_assoc($result)) {
 ?>
         <div class="col-sm-4 info-blocks">
             <i class="icon-info-blocks fa fa-building-o"></i>
@@ -74,6 +72,7 @@ if ($compResult) {
     }
 }
 ?>
+
 
 
 </div>
