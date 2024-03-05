@@ -1,6 +1,6 @@
 <?php 
  if(!isset($_SESSION['ADMIN_USERID'])){
-    redirect(web_root."admin/index.php");
+    redirect("admin/index.php");
    }
 
   $autonum = New Autonumber();

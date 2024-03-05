@@ -1,9 +1,9 @@
 <?php  
       if (!isset($_SESSION['ADMIN_USERID'])){
-      redirect(web_root."admin/index.php");
+      redirect("admin/index.php");
      }
 if(!$_SESSION['ADMIN_ROLE']=='Administrator'){
-  redirect(web_root."admin/index.php");
+  redirect("admin/index.php");
 }
   @$USERID = $_SESSION['ADMIN_USERID'];
     if($USERID==''){

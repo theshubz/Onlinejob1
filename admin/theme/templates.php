@@ -7,29 +7,26 @@
             ?>
         </title>
        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <link rel="stylesheet" href="<?php echo web_root;?>bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 
-        <?php echo web_root;?>
-       <?php echo web_root;?>
 
         
-        <link rel="stylesheet" href="<?php echo web_root;?>dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
       
-        <link rel="stylesheet" href="<?php echo web_root;?>dist/css/skins/_all-skins.min.css">
+        <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
         
-        <link rel="stylesheet" href="<?php echo web_root;?>plugins/iCheck/flat/blue.css">
+        <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
         
-        <link rel="stylesheet" href="<?php echo web_root;?>plugins/morris/morris.css">
+        <link rel="stylesheet" href="plugins/morris/morris.css">
         
-        <link rel="stylesheet" href="<?php echo web_root;?>plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-        <link href="<?php echo web_root; ?>plugins/datepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+        <link href="plugins/datepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
-        <link rel="stylesheet" href="<?php echo web_root;?>plugins/dataTables/jquery.dataTables.min.css">  
+        <link rel="stylesheet" href="plugins/dataTables/jquery.dataTables.min.css">  
 
-        <?php echo web_root;?>
-       <?php echo web_root;?>
+      
         
-        <link rel="stylesheet" href="<?php echo web_root;?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+        <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
  
     </head>
 
@@ -37,7 +34,7 @@
 <div class="wrapper">
 
   <header class="main-header">
-    <a href="<?php echo web_root;?>/admin/" class="logo">
+    <a href="/admin/" class="logo">
       <span class="logo-mini"><b></b></span>
       <span class="logo-lg"><b>Admin Dashboard</b></span>
     </a>
@@ -56,19 +53,19 @@
           ?>
           <li class="dropdown user user-menu" style="padding-right: 15px;"  >
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo web_root.'admin/user/'. $singleuser->PICLOCATION;?>" class="user-image" alt="User Image">
+              <img src="<?php 'admin/user/'. $singleuser->PICLOCATION;?>" class="user-image" alt="User Image">
               <span class="hidden-xs"><?php echo $singleuser->FULLNAME; ?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header"> 
-                <img data-target="#menuModal"  data-toggle="modal"  src="<?php echo web_root.'admin/user/'. $singleuser->PICLOCATION;?>" class="img-circle" alt="User Image" />  
+                <img data-target="#menuModal"  data-toggle="modal"  src="'admin/user/'. $singleuser->PICLOCATION;?>" class="img-circle" alt="User Image" />  
               </li> 
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo web_root.'admin/user/index.php?view=view&id='.$_SESSION['ADMIN_USERID'] ;?>" class="btn btn-default btn-flat">Profile</a>
+                  <a href="<?php 'admin/user/index.php?view=view&id='.$_SESSION['ADMIN_USERID'] ;?>" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo web_root ;?>admin/logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="admin/logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -91,7 +88,7 @@
                                     <h4 class="modal-title" id="myModalLabel">Image.</h4>
                                 </div>
 
-                                <form action="<?php echo web_root; ?>admin/user/controller.php?action=photos" enctype="multipart/form-data" method=
+                                <form action="admin/user/controller.php?action=photos" enctype="multipart/form-data" method=
                                 "post">
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -130,27 +127,27 @@
  
       <ul class="sidebar-menu"> 
         <li  class="<?php echo (currentpage() == 'index.php') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/">
+          <a href="admin/">
             <i class="fa fa-dashboard"></i> <span><h4>Dashboard<h4></span>  
           </a> 
         </li> 
         <li class="<?php echo (currentpage() == 'company') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/company/">
+          <a href="admin/company/">
             <i class="fa fa-building"></i> <span><h4>Company</h4></span> 
           </a>
         </li>
         <li class="<?php echo (currentpage() == 'vacancy') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/vacancy/">
+          <a href="admin/vacancy/">
             <i class="fa fa-suitcase"></i> <span><h4>Vacancy</h4></span> 
           </a>
         </li>
         <li class="<?php echo (currentpage() == 'employee') ? "active" : false;?>" >
-          <a href="<?php echo web_root ;?>admin/employee/">
+          <a href="admin/employee/">
             <i class="fa fa-users"></i> <span><h4>Employee</h4></span> 
           </a>
         </li> 
         <li class="<?php echo (currentpage() == 'applicants') ? "active" : false;?>" > 
-          <a href="<?php echo web_root ;?>admin/applicants/">
+          <a href=">admin/applicants/">
             <i class="fa fa-users"></i> <span><h4>Applicants</h4></span> 
             <span class="label label-primary pull-right">
               <?php
@@ -163,13 +160,13 @@
           </a>
         </li> 
         <li class="<?php echo (currentpage() == 'category') ? "active" : false;?>" > 
-          <a href="<?php echo web_root ;?>admin/category/">
+          <a href="admin/category/">
             <i class="fa fa-list"></i> <span>Category</span>  
           </a>
         </li> 
 
          <li class="<?php echo (currentpage() == 'user') ? "active" : false;?>">
-          <a href="<?php echo web_root; ?>admin/user/">
+          <a href="admin/user/">
             <i class="fa fa-user"></i> <span>Manage Users</span> </a>
         </li>
         
@@ -230,22 +227,22 @@
   
 
     </body>
-      <script type="text/javascript" src="<?php echo web_root; ?>plugins/jQuery/jQuery-2.1.4.min.js"> </script>
-      <script type="text/javascript" src="<?php echo web_root; ?>bootstrap/js/bootstrap.min.js" ></script>
-      <script src="<?php echo web_root;?>dist/js/app.min.js"></script> 
+      <script type="text/javascript" src="plugins/jQuery/jQuery-2.1.4.min.js"> </script>
+      <script type="text/javascript" src="bootstrap/js/bootstrap.min.js" ></script>
+      <script src="dist/js/app.min.js"></script> 
 
-      <script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/bootstrap-datepicker.js" ></script> 
-      <script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-      <script type="text/javascript" src="<?php echo web_root; ?>plugins/datepicker/locales/bootstrap-datetimepicker.uk.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="plugins/datepicker/bootstrap-datepicker.js" ></script> 
+      <script type="text/javascript" src="plugins/datepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+      <script type="text/javascript" src="plugins/datepicker/locales/bootstrap-datetimepicker.uk.js" charset="UTF-8"></script>
 
-      <script type="text/javascript" src="<?php echo web_root; ?>plugins/dataTables/dataTables.bootstrap.min.js" ></script> 
-      <script src="<?php echo web_root; ?>plugins/datatables/jquery.dataTables.min.js"></script> 
+      <script type="text/javascript" src="plugins/dataTables/dataTables.bootstrap.min.js" ></script> 
+      <script src="plugins/datatables/jquery.dataTables.min.js"></script> 
 
-      <script src="<?php echo web_root; ?>plugins/slimScroll/jquery.slimscroll.min.js"></script>
+      <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
 
-      <script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.js"></script> 
-      <script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.date.extensions.js"></script> 
-      <script type="text/javascript" language="javascript" src="<?php echo web_root; ?>plugins/input-mask/jquery.inputmask.extensions.js"></script> 
+      <script type="text/javascript" language="javascript" src="plugins/input-mask/jquery.inputmask.js"></script> 
+      <script type="text/javascript" language="javascript" src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script> 
+      <script type="text/javascript" language="javascript" src="plugins/input-mask/jquery.inputmask.extensions.js"></script> 
 
 
 
