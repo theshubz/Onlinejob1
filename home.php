@@ -54,7 +54,7 @@ require_once('include/database.php');
 // Assuming you have a database connection object $conn from database.php
 
 $sql = "SELECT * FROM `tblcompany`";
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($mydb, $sql);
 $num = mysqli_num_rows($result);
 
 if ($num > 0) {
