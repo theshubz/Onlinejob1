@@ -5,8 +5,7 @@ class Applicants {
 
 	function dbfields () {
 		global $mydb;
-		return $mydb->getfieldsononetable(self::$tblname);
-
+		return $mydb->getFieldsOnOneTable(self::$tblname);
 	}
 	function listofapplicant(){
 		global $mydb;
@@ -32,35 +31,47 @@ class Applicants {
 	}
 	 
 	function single_applicant($id=""){
-			global $mydb;
-			$mydb->setQuery("SELECT * FROM ".self::$tblname." 
-				Where APPLICANTID= '{$id}' LIMIT 1");
-			$cur = $mydb->loadSingleResult();
-			return $cur;
-	}
-	function select_applicant($id=""){
-			global $mydb;
-			$mydb->setQuery("SELECT * FROM ".self::$tblname." 
-				Where APPLICANTID= '{$id}' LIMIT 1");
-			$cur = $mydb->loadSingleResult();
-			return $cur;
-	}
-	function applicantAuthentication($U_USERNAME,$h_pass){
 		global $mydb;
-		$mydb->setQuery("SELECT * FROM `tblapplicants` WHERE `USERNAME`='".$U_USERNAME."' AND `PASS`='".$h_pass."'");
+		$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+			WHERE APPLICANTID= '{$id}' LIMIT 1");
 		$cur = $mydb->executeQuery();
-		if($cur==false){
-			die(mysql_error());
+		$row = $mydb->fetchAssoc($cur); // Fetch the result as an associative array
+		return $row;
+	}
+	
+	function select_applicant($id=""){
+		global $mydb;
+		$mydb->setQuery("SELECT * FROM ".self::$tblname." 
+			WHERE APPLICANTID= '{$id}' LIMIT 1");
+		$cur = $mydb->executeQuery();
+		$row = $mydb->fetchAssoc($cur); // Fetch the result as an associative array
+		return $row;
+	}
+	
+	function applicantAuthentication($U_USERNAME, $h_pass){
+		global $mydb;
+		$mydb->setQuery("SELECT * FROM `tblapplicants` WHERE `USERNAME`='$U_USERNAME' AND `PASS`='$h_pass'");
+		$cur = $mydb->executeQuery();
+		
+		if($cur === false){
+			die($mydb->getLastError()); // Use appropriate error handling
 		}
-		$row_count = $mydb->num_rows($cur);//get the number of count
-		 if ($row_count == 1){
-		 $emp_found = $mydb->loadSingleResult(); 
-		 	$_SESSION['APPLICANTID']   		= $emp_found->APPLICANTID; 
-		 	$_SESSION['USERNAME'] 			= $emp_found->USERNAME;  
-		   return true;
-		 }else{
-		 	return false;
-		 }
+		
+		$row_count = $mydb->num_rows($cur); // Get the number of rows returned
+		if ($row_count == 1){
+			// Fetch the row as an associative array
+			$emp_found = $mydb->fetchAssoc($cur);
+			
+			// Set session variables
+			$_SESSION['APPLICANTID'] = $emp_found['APPLICANTID'];
+			$_SESSION['USERNAME'] = $emp_found['USERNAME'];
+			
+			return true;
+		} else {
+			return false;
+		}
+	
+	
 	}
 
 	 
