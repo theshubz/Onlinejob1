@@ -153,53 +153,74 @@ body {
 							</div>
 						</div>
 						<div class="table-container">
-							<table class="table table-filter">
-								<tbody>
-									<?php 
+    <table class="table table-filter">
+        <tbody>
+            <?php 
+            $search = isset($_POST['SEARCH']) ? $_POST['SEARCH'] : '';
+            $company = isset($_POST['COMPANY']) ? $_POST['COMPANY'] : '';
+            $category = isset($_POST['CATEGORY']) ? $_POST['CATEGORY'] : '';
 
-									 $search = isset($_POST['SEARCH']) ? $_POST['SEARCH'] : '';
-									 $company = isset($_POST['COMPANY']) ? $_POST['COMPANY'] : '';
-									 $category = isset($_POST['CATEGORY']) ? $_POST['CATEGORY'] : '';
+            // Create your mysqli connection object
+			require_once('include/database.php');
 
-										$sql = "SELECT * FROM `tbljob` j, `tblcompany` c 
-										WHERE j.`COMPANYID`=c.`COMPANYID` AND COMPANYNAME LIKE '%{$company}%' AND CATEGORY LIKE '%{$category}%' AND (`OCCUPATIONTITLE` LIKE '%{$search}%' OR `JOBDESCRIPTION` LIKE '%{$search}%' OR `QUALIFICATION_WORKEXPERIENCE` LIKE '%{$search}%')";
-										$mydb->setQuery($sql);
-										$cur = $mydb->executeQuery();
-										$maxrow = $mydb->num_rows($cur);
+            if ($conn->connect_error) {
+                die("Connection failed: " . $mydb->connect_error);
+            }
 
-										if ($maxrow > 0) {
-											
-										$res = $mydb->loadResultList();
-										foreach ($res as $row) { 
-									?>
-									<tr>  
-										<td> 
-											<div class="media">
-												<a href="#" class="pull-left">
-													
-											     <span class="fa fa-building-o"></span>
-												</a>
-												<div class="media-body">
-													<span class="media-meta pull-right"><?php echo $row->OCCUPATIONTITLE; ?></span>
-													<h4 class="title">
-														<a href="index.php?q=viewjob&search=<?php echo $row->JOBID ?>">
-														<?php echo $row->OCCUPATIONTITLE; ?> 
-													    </a>
-														<span class="pull-right pagado">(Company <?php echo $row->COMPANYNAME ?>)</span>
-													</h4>
-													<p class="summary"><?php echo $row->JOBDESCRIPTION; ?></p>
-												</div>
-											</div> 
-										</td>
-									</tr>
-								<?php } }else {
-									echo '<tr><td>No result found!.....</td></tr>';
+            $sql = "SELECT * FROM `tbljob` j, `tblcompany` c 
+                    WHERE j.`COMPANYID`=c.`COMPANYID` 
+                    AND COMPANYNAME LIKE '%{$company}%' 
+                    AND CATEGORY LIKE '%{$category}%' 
+                    AND (`OCCUPATIONTITLE` LIKE '%{$search}%' 
+                    OR `JOBDESCRIPTION` LIKE '%{$search}%' 
+                    OR `QUALIFICATION_WORKEXPERIENCE` LIKE '%{$search}%')";
 
-								}?>
-								 
-								</tbody>
-							</table>
-						</div>
+            $result = mysqli_query($mydb, $sql);
+
+            if ($result) {
+                // Query executed successfully
+                $maxrow = mysqli_num_rows($result);
+                if ($maxrow > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        // Output each row of the result set
+            ?>
+                        <tr>  
+                            <td> 
+                                <div class="media">
+                                    <a href="#" class="pull-left">
+                                        <span class="fa fa-building-o"></span>
+                                    </a>
+                                    <div class="media-body">
+                                        <span class="media-meta pull-right"><?php echo $row['OCCUPATIONTITLE']; ?></span>
+                                        <h4 class="title">
+                                            <a href="index.php?q=viewjob&search=<?php echo $row['JOBID']; ?>">
+                                                <?php echo $row['OCCUPATIONTITLE']; ?> 
+                                            </a>
+                                            <span class="pull-right pagado">(Company <?php echo $row['COMPANYNAME']; ?>)</span>
+                                        </h4>
+                                        <p class="summary"><?php echo $row['JOBDESCRIPTION']; ?></p>
+                                    </div>
+                                </div> 
+                            </td>
+                        </tr>
+            <?php 
+                    }
+                } else {
+                    // Handle no results
+                    echo '<tr><td>No result found!.....</td></tr>';
+                }
+            } else {
+                // Handle query error
+                echo "Error: " . mysqli_error($mydb);
+            }
+
+            // Close the connection
+            mysqli_close($mydb);
+            ?>
+        </tbody>
+    </table>
+</div>
+
 					</div>
 				</div> 
 			</div>
