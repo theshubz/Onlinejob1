@@ -4,29 +4,36 @@ class Applicants {
 	protected static  $tblname = "tblapplicants";
 	function dbfields() {
 		global $mydb;
+		
+		// Establish database connection (assuming it's already done somewhere)
+		$connection = $mydb->getConnection(); // Get the mysqli connection object
+		
+		// Escape the table name to prevent SQL injection
+		$tblname = $connection->real_escape_string(self::$tblname);
 	
 		// Query to fetch column information from the table
-		$query = "SHOW COLUMNS FROM " . self::$tblname;
-	
-		// Set the query in the database object
-		$mydb->setQuery($query);
+		$query = "SHOW COLUMNS FROM $tblname";
 	
 		// Execute the query
-		$result = $mydb->executeQuery();
+		$result = $connection->query($query);
 	
-		if ($result === false) {
+		if (!$result) {
 			// Handle error, for example:
-			die("Error executing query: " . $mydb->getLastError());
+			die("Error executing query: " . $connection->error);
 		}
 	
 		// Fetch column names
 		$fields = array();
-		while ($row = $mydb->fetchAssoc($result)) {
+		while ($row = $result->fetch_assoc()) {
 			$fields[] = $row['Field'];
 		}
 	
+		// Free the result set
+		$result->free();
+	
 		return $fields;
 	}
+	
 	
 	
 	function listofapplicant(){
