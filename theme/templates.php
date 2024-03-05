@@ -224,7 +224,7 @@ $result = $mydb->query($sql);
 
 if ($result) {
     while ($row = $result->fetch_assoc()) {
-        echo '<li><a href="' . web_root . 'index.php?q=viewjob&search=' . $row['JOBID'] . '">' . $row['COMPANYNAME'] . ' / ' . $row['OCCUPATIONTITLE'] . '</a></li>';
+        echo '<li><a href="index.php?q=viewjob&search=' . $row['JOBID'] . '">' . $row['COMPANYNAME'] . ' / ' . $row['OCCUPATIONTITLE'] . '</a></li>';
     }
 } else {
     echo "Error: " . $mydb->error;
