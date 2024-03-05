@@ -112,28 +112,35 @@ if (isset($_SESSION['APPLICANTID'])) {
                           <a href="#" data-toggle="dropdown" class="dropdown-toggle"><h5>Popular Jobs </h5><b class="caret"></b></a>
                           <ul class="dropdown-menu">
                           
-<?php 
+                          <?php 
 require_once('include/database.php');
 
 $sql = "SELECT * FROM `tblcategory` LIMIT 10";
 
 // Execute the query
-$result = $mydb->query($sql);
+$result = mysqli_query($mydb, $sql);
 
 if ($result) {
-    // Query executed successfully
-    while ($row = $result->fetch_assoc()) {
+    // Check the number of rows returned by the query
+    $num_rows = mysqli_num_rows($result);
+
+    if ($num_rows > 0) {
         // Process each row of the result set
-        if (isset($_GET['search']) && $row['CATEGORY'] == $_GET['search']) {
-            $viewresult = '<li class="active"><a href="index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
-        } else {
-            $viewresult = '<li><a href="index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
+        while ($row = mysqli_fetch_assoc($result)) {
+            // Process each row of the result set
+            if (isset($_GET['search']) && $row['CATEGORY'] == $_GET['search']) {
+                $viewresult = '<li class="active"><a href="index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
+            } else {
+                $viewresult = '<li><a href="index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
+            }
+            echo $viewresult;
         }
-        echo $viewresult;
+    } else {
+        echo "No results found.";
     }
 } else {
     // Error handling if the query fails
-    echo "Error: " . $mydb->error;
+    echo "Error: " . mysqli_error($mydb);
 }
 ?>
 
