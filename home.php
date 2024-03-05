@@ -50,7 +50,7 @@
 </div>
 
 <?php 
-require_once('database.php');
+require_once('include/database.php');
 
 // Assuming you have a database connection object $mydb from database.php
 
