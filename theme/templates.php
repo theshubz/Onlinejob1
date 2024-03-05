@@ -62,26 +62,27 @@
               <div class="col-md-12">      
                 <p class="pull-left hidden-xs"><i class="fa fa-phone"></i><b>Contact no. (+91) 9975616377</b></p>
                 <?php
-                	$mydb = new mysqli('opportunityjunction.mysql.database.azure.com', 'shubhamj', 'omkar@29', 'erisdb');
-                  if (isset($_SESSION['APPLICANTID'])) { 
+require_once('include/database.php');
+if (isset($_SESSION['APPLICANTID'])) { 
+    $sql = "SELECT count(*) as 'COUNTNOTIF' FROM `tbljob` ORDER BY `DATEPOSTED` DESC";
+    $result = mysqli_query($mydb, $sql);
+    $showNotif = mysqli_fetch_object($result);
+    $notif = isset($showNotif->COUNTNOTIF) ? $showNotif->COUNTNOTIF : 0;
 
-                    $sql = "SELECT count(*) as 'COUNTNOTIF' FROM `tbljob` ORDER BY `DATEPOSTED` DESC";
-                    $mydb->query($sql);
-                    $showNotif = $mydb->loadSingleResult();
-                    $notif =isset($showNotif->COUNTNOTIF) ? $showNotif->COUNTNOTIF : 0;
+    $applicant = new Applicants();
+    $appl  = $applicant->single_applicant($_SESSION['APPLICANTID']);
 
+    $sql = "SELECT count(*) as 'COUNT' FROM `tbljobregistration` WHERE `PENDINGAPPLICATION` = 0 AND `HVIEW` = 0 AND `APPLICANTID` = '{$appl->APPLICANTID}'";
+    $result = mysqli_query($mydb, $sql);
+    $showMsg = mysqli_fetch_object($result);
+    $msg = isset($showMsg->COUNT) ? $showMsg->COUNT : 0;
 
-                    $applicant = new Applicants();
-                    $appl  = $applicant->single_applicant($_SESSION['APPLICANTID']);
+    echo '<p class="pull-right login"> | <a title="View Message(s)" href="' . web_root . 'applicant/index.php?view=message"> <i class="fa fa-envelope-o"></i> <span class="label label-success">' . $msg . '</span></a> | <a title="View Profile" href="' . web_root . 'applicant/"> <i class="fa fa-user"></i>'. $appl->FNAME. ' '.$appl->LNAME .' </a> | <a href="' . web_root . 'logout.php">  <i class="fa fa-sign-out"> </i>Logout</a> </p>';
+} else { 
+    // Your code for non-logged-in users
+}
+?>
 
-                    $sql ="SELECT count(*) as 'COUNT' FROM `tbljobregistration` WHERE `PENDINGAPPLICATION`=0 AND `HVIEW`=0 AND `APPLICANTID`='{$appl->APPLICANTID}'";
-                    $mydb->query($sql);
-                    $showMsg = $mydb->loadSingleResult();
-                    $msg =isset($showMsg->COUNT) ? $showMsg->COUNT : 0;
-
-                    echo ' <p class="pull-right login"> | <a title="View Message(s)" href="'.web_root.'applicant/index.php?view=message"> <i class="fa fa-envelope-o"></i> <span class="label label-success">'.$msg.'</span></a> | <a title="View Profile" href="'.web_root.'applicant/"> <i class="fa fa-user"></i>'. $appl->FNAME. ' '.$appl->LNAME .' </a> | <a href="'.web_root.'logout.php">  <i class="fa fa-sign-out"> </i>Logout</a> </p>';
-
-                    }else{ ?>
                       <p   class="pull-right login"><a data-target="#myModal" data-toggle="modal" href=""> <i class="fa fa-lock"></i><b> Login</b> </a></p>
                 <?php } ?>
               
@@ -111,7 +112,7 @@
                           <a href="#" data-toggle="dropdown" class="dropdown-toggle"><h5>Popular Jobs </h5><b class="caret"></b></a>
                           <ul class="dropdown-menu">
                           <?php 
-$mydb = new mysqli('opportunityjunction.mysql.database.azure.com', 'shubhamj', 'omkar@29', 'erisdb');
+require_once('include/database.php');
 $sql = "SELECT * FROM `tblcategory` LIMIT 10";
 
 // Assuming $mydb is a MySQLi database connection object
