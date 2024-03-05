@@ -48,29 +48,33 @@
    <br/>
  </div>
 </div>
-
-<?php 
+<?php
 require_once('include/database.php');
- $sql = "SELECT * FROM `tblcompany`";
-      $mydb->query($sql);
-      $comp = $mydb->loadResultList();
 
+// Assuming you have a database connection object $mydb from database.php
 
-      foreach ($comp as $company ) {
-    
-    
-    ?>
-            <div class="col-sm-4 info-blocks">
-                <i class="icon-info-blocks fa fa-building-o"></i>
-                <div class="info-blocks-in">
-                    <h3><?php echo $company->COMPANYNAME;?></h3>
-                    <!-- <p><?php echo $company->COMPANYMISSION;?></p> -->
-                    <p>Address :<?php echo $company->COMPANYADDRESS;?></p>
-                    <p>Contact No. :<?php echo $company->COMPANYCONTACTNO;?></p>
-                </div>
+$sql = "SELECT * FROM `tblcompany`";
+$mydb->setQuery($sql);
+$compResult = $mydb->query();
+
+if ($compResult) {
+    $comp = $compResult->fetch_all(MYSQLI_ASSOC);
+
+    foreach ($comp as $company) {
+?>
+        <div class="col-sm-4 info-blocks">
+            <i class="icon-info-blocks fa fa-building-o"></i>
+            <div class="info-blocks-in">
+                <h3><?php echo $company['COMPANYNAME']; ?></h3>
+                <p>Address: <?php echo $company['COMPANYADDRESS']; ?></p>
+                <p>Contact No.: <?php echo $company['COMPANYCONTACTNO']; ?></p>
             </div>
+        </div>
+<?php
+    }
+}
+?>
 
-    <?php } ?>
 
 </div>
 </section>
