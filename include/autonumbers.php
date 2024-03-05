@@ -1,5 +1,5 @@
 <?php
-require_once('database.php');
+require_once('include/database.php');
 
 class Autonumber {
     protected static $tblname = "tblautonumbers";
@@ -24,21 +24,37 @@ class Autonumber {
         return $cur;
     }
 
-    public static function set_autonumber($Autokey) {
-        global $mydb;
-        $mydb->setQuery("SELECT CONCAT(`AUTOSTART`, `AUTOEND`) AS 'AUTO' FROM " . self::$tblname . " WHERE AUTOKEY = '{$Autokey}'");
-        $result = $mydb->query($mydb->getQuery());
-
-        if ($result) {
-            $cur = $result->fetch_assoc();
-        } else {
-            echo "Error: " . $mydb->error;
-            $cur = array();
-        }
-
-        return $cur;
-    }
- 
+	public static function set_autonumber($Autokey) {
+		global $mydb;
+		
+		// Establish a connection to the database
+		
+		// Check if the connection was successful
+		if ($mydb->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+		
+		// Prepare the SQL query
+		$sql = "SELECT CONCAT(`AUTOSTART`, `AUTOEND`) AS 'AUTO' FROM " . self::$tblname . " WHERE AUTOKEY = '{$Autokey}'";
+		
+		// Execute the query
+		$result = $mydb->query($sql);
+		
+		if ($result) {
+			// Fetch the result as an associative array
+			$cur = $result->fetch_assoc();
+		} else {
+			// Handle query error
+			echo "Error: " . $mydb->error;
+			$cur = array();
+		}
+		
+		// Close the database connection
+		$mydb->close();
+		
+		return $cur;
+	}
+	
 
 	static function instantiate($record) {
 		$object = new self;
