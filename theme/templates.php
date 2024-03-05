@@ -102,13 +102,13 @@
                 </div>
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
-                        <li class="<?php echo !isset($_GET['q'])? 'active' :''?>"><a href="index.php"><h4>Home</h4></a></li> 
+                        <li class="<?php echo !isset($_GET['q'])? 'active' :''?>"><a href="index.php"><h5>Home</h5></a></li> 
                         <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='About'){ echo 'active'; }else{ echo ''; }}  ?>"><a href="index.php?q=About"><h4>About Us<h4></a></li>
 
 						<li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='hiring'){ echo 'active'; }else{ echo ''; }} ?>"><a href=">index.php?q=hiring"><h4>Hiring Now</h4></a></li>
 
                       <li class="dropdown <?php  if(isset($_GET['q'])) { if($_GET['q']=='category'){ echo 'active'; }else{ echo ''; }}  ?>">
-                          <a href="#" data-toggle="dropdown" class="dropdown-toggle"><h4>Popular Jobs </h4><b class="caret"></b></a>
+                          <a href="#" data-toggle="dropdown" class="dropdown-toggle"><h5>Popular Jobs </h5><b class="caret"></b></a>
                           <ul class="dropdown-menu">
                           <?php 
 $mydb = new mysqli('opportunityjunction.mysql.database.azure.com', 'shubhamj', 'omkar@29', 'erisdb');
@@ -140,7 +140,7 @@ if ($result) {
                        </li> 
                         <li class="<?php  if(isset($_GET['q'])) { if($_GET['q']=='company'){ echo 'active'; }else{ echo ''; }}  ?>"><a href="index.php?q=company"><h4>Company</h4></a></li>
                         <li class="dropdown">
-                          <a href="#" data-toggle="dropdown" class="dropdown-toggle"><h4>Job Search</h4> <b class="caret"></b></a>
+                          <a href="#" data-toggle="dropdown" class="dropdown-toggle"><h5>Job Search</h5> <b class="caret"></b></a>
                           <ul class="dropdown-menu">
                               <li><a href="index.php?q=search-company">Job By Company</a></li>
                           
@@ -186,7 +186,7 @@ if ($result) {
     <div class="row">
       <div class="col-md-4 col-sm-4">
         <div class="widget">
-          <h4 class="widgetheading">Contact US</h4>
+          <h5 class="widgetheading">Contact US</h5>
           <address>
           <strong>Our Company</strong><br>
           Pune Main Road, Near Warje<br>
