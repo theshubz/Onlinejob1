@@ -114,7 +114,7 @@ if (isset($_SESSION['APPLICANTID'])) {
                           
                           <?php 
 require_once('include/database.php');
-$mydb=("opportunityjunction.mysql.database.azure.com","shubhamj","omkar@29","erisdb");
+$mydb= new mysqli("opportunityjunction.mysql.database.azure.com","shubhamj","omkar@29","erisdb");
 
 $sql = "SELECT * FROM `tblcategory` LIMIT 10";
 
