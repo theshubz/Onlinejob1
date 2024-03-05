@@ -111,7 +111,7 @@ if (isset($_SESSION['APPLICANTID'])) {
                       <li class="dropdown <?php  if(isset($_GET['q'])) { if($_GET['q']=='category'){ echo 'active'; }else{ echo ''; }}  ?>">
                           <a href="#" data-toggle="dropdown" class="dropdown-toggle"><h5>Popular Jobs </h5><b class="caret"></b></a>
                           <ul class="dropdown-menu">
-                          <?php 
+                          
 <?php 
 require_once('include/database.php');
 
