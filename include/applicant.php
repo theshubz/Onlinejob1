@@ -47,28 +47,38 @@ class Applicants {
 	}
 	function applicantAuthentication($U_USERNAME, $h_pass) {
 		global $mydb;
-		
+	
 		$sql = "SELECT * FROM `tblapplicants` WHERE `USERNAME`=? AND `PASS`=?";
 		$params = array($U_USERNAME, $h_pass);
-		$mydb->setQuery($sql, $params);
-		$result = mysqli_query($mydb->getConnection(), $mydb->getQuery());
+	
+		$conn = $mydb->getConnection();
+		$stmt = $conn->prepare($sql);
+		
+		if ($stmt === false) {
+			die("Error preparing statement: " . $conn->error);
+		}
+	
+		$stmt->bind_param("ss", ...$params);
+		$stmt->execute();
+		$result = $stmt->get_result();
 	
 		if ($result !== false) {
-			$row_count = mysqli_num_rows($result);
+			$row_count = $result->num_rows;
 			if ($row_count == 1) {
-				$emp_found = mysqli_fetch_object($result); 
+				$emp_found = $result->fetch_object(); 
 				$_SESSION['APPLICANTID'] = $emp_found->APPLICANTID; 
 				$_SESSION['USERNAME'] = $emp_found->USERNAME;  
-				mysqli_free_result($result); // Free the result set
+				$result->close(); // Close the result set
 				return true;
 			} else {
-				mysqli_free_result($result); // Free the result set
+				$result->close(); // Close the result set
 				return false;
 			}
 		} else {
-			die(mysqli_error($mydb->getConnection())); // Handle the error appropriately
+			die("Error executing query: " . $conn->error);
 		}
 	}
+	
 	
 
 	 
