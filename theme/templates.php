@@ -112,10 +112,12 @@ if (isset($_SESSION['APPLICANTID'])) {
                           <a href="#" data-toggle="dropdown" class="dropdown-toggle"><h5>Popular Jobs </h5><b class="caret"></b></a>
                           <ul class="dropdown-menu">
                           <?php 
+<?php 
 require_once('include/database.php');
+
 $sql = "SELECT * FROM `tblcategory` LIMIT 10";
 
-// Assuming $mydb is a MySQLi database connection object
+// Execute the query
 $result = $mydb->query($sql);
 
 if ($result) {
