@@ -14,10 +14,5 @@ define('WEB_ROOT', $web_root);
 define('SERVER_ROOT', $server_root);
 require_once('include/config.php');
 
-// Example usage of constants
-echo "Server: " . SERVER . "<br>";
-echo "User: " . USER . "<br>";
-echo "Database Name: " . DATABASE_NAME . "<br>";
-echo "Web Root: " . WEB_ROOT . "<br>";
-echo "Server Root: " . SERVER_ROOT . "<br>";
+
 ?>

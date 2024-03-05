@@ -111,7 +111,7 @@
                           <a href="#" data-toggle="dropdown" class="dropdown-toggle"><h4>Popular Jobs </h4><b class="caret"></b></a>
                           <ul class="dropdown-menu">
                           <?php 
-                          $mydb = new mysqli('opportunityjunction.mysql.database.azure.com', 'shubhamj', 'omkar@29', 'erisdb');
+$mydb = new mysqli('opportunityjunction.mysql.database.azure.com', 'shubhamj', 'omkar@29', 'erisdb');
 $sql = "SELECT * FROM `tblcategory` LIMIT 10";
 
 // Assuming $mydb is a MySQLi database connection object
@@ -122,7 +122,7 @@ if ($result) {
     while ($row = $result->fetch_assoc()) {
         // Process each row of the result set
         if (isset($_GET['search']) && $row['CATEGORY'] == $_GET['search']) {
-            $viewresult = '<li class="active"><a href="'.web_root.'index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
+            $viewresult = '<li class="active"><a href="index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
         } else {
             $viewresult = '<li><a href="index.php?q=category&search='.$row['CATEGORY'].'">'.$row['CATEGORY'].' Jobs</a></li>';
         }
@@ -133,6 +133,7 @@ if ($result) {
     echo "Error: " . $mydb->error;
 }
 ?>
+
 
 
                           </ul>

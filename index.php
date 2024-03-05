@@ -1,5 +1,5 @@
 <?php 
-//require_once("include/initialize.php"); 
+require_once("include/initialize.php"); 
 $content='home.php';
 $view = (isset($_GET['q']) && $_GET['q'] != '') ? $_GET['q'] : '';
 switch ($view) { 
