@@ -3,7 +3,7 @@ require_once('include/database.php');
 class Applicants {
 	protected static  $tblname = "tblapplicants";
 	function dbfields() {
-		global $mydb;
+		
 		$fields = $mydb->getFieldsOnOneTable(self::$tblname);
 	
 		if ($fields === false) {
