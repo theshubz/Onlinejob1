@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="row showcase-section">
 				<div class="col-md-6">
-					<img src="img/dev1.png" alt="showcase image">
+					
 				</div>
 			</div>
 		</div>
