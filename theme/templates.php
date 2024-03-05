@@ -113,7 +113,7 @@ if (isset($_SESSION['APPLICANTID'])) {
                           <ul class="dropdown-menu">
                           <?php 
 require_once('include/database.php');
-<?php
+
 // Assuming $mydb is a MySQLi database connection object
 $sql = "SELECT * FROM `tblcategory` LIMIT 10";
 $result = mysqli_query($mydb, $sql);
