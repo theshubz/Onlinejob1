@@ -1,31 +1,34 @@
 <?php
 require_once('database.php');
+
 class Autonumber {
-	protected static  $tblname = "tblautonumbers";
+    protected static $tblname = "tblautonumbers";
 
-	function dbfields () {
-		global $mydb;
-		return $mydb->getfieldsononetable(self::$tblname);
+    public static function dbfields() {
+        global $mydb;
+        return $mydb->getfieldsononetable(self::$tblname);
+    }
 
-	}
- 
-  	function single_autonumber($id=""){
-			global $mydb;
-			$mydb->setQuery("SELECT * FROM ".self::$tblname." 
-				Where AUTOID= '{$id}' LIMIT 1");
-			$cur = $mydb->loadSingleResult();
-			return $cur;
-	}
- 
-	
+    public static function loadResultList($sql) {
+        global $mydb;
+        $mydb->setQuery($sql);
+        $cur = $mydb->loadResultList();
+        return $cur;
+    }
 
-    function set_autonumber($Autokey){
-			global $mydb;
-			$mydb->setQuery("SELECT concat(`AUTOSTART`, `AUTOEND`) AS 'AUTO' FROM ".self::$tblname." 
-				Where AUTOKEY= '{$Autokey}' LIMIT 1");
-			$cur = $mydb->loadSingleResult();
-			return $cur;
-	} 
+    public static function single_autonumber($id = "") {
+        global $mydb;
+        $mydb->setQuery("SELECT * FROM " . self::$tblname . " WHERE AUTOID = '{$id}'");
+        $cur = self::loadResultList($mydb->getQuery());
+        return $cur;
+    }
+
+    public static function set_autonumber($Autokey) {
+        global $mydb;
+        $mydb->setQuery("SELECT concat(`AUTOSTART`, `AUTOEND`) AS 'AUTO' FROM " . self::$tblname . " WHERE AUTOKEY = '{$Autokey}'");
+        $cur = self::loadResultList($mydb->getQuery());
+        return $cur;
+    }
  
 
 	static function instantiate($record) {
