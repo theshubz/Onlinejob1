@@ -1,13 +1,12 @@
 <?php
 require_once('include/database.php');
 class Applicants {
-	protected static  $tblname = "tblapplicants";
+	protected static  $tblname = "tblapplicants";		$mydb= new mysqli("opportunityjunction.mysql.database.azure.com","shubhamj","omkar@29","erisdb");
+
 	function dbfields() {
-		$mydb= new mysqli("opportunityjunction.mysql.database.azure.com","shubhamj","omkar@29","erisdb");
 
 		
 		// Establish database connection (assuming it's already done somewhere)
-		$connection = $mydb->getConnection(); // Get the mysqli connection object
 		
 		// Escape the table name to prevent SQL injection
 		$tblname = $connection->real_escape_string(self::$tblname);
