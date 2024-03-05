@@ -3,16 +3,31 @@ require_once('include/database.php');
 class Applicants {
 	protected static  $tblname = "tblapplicants";
 	function dbfields() {
-		
-		$fields = $mydb->getFieldsOnOneTable(self::$tblname);
+		global $mydb;
 	
-		if ($fields === false) {
+		// Query to fetch column information from the table
+		$query = "SHOW COLUMNS FROM " . self::$tblname;
+	
+		// Set the query in the database object
+		$mydb->setQuery($query);
+	
+		// Execute the query
+		$result = $mydb->executeQuery();
+	
+		if ($result === false) {
 			// Handle error, for example:
-			die("Error retrieving fields: " . $mydb->getLastError());
+			die("Error executing query: " . $mydb->getLastError());
+		}
+	
+		// Fetch column names
+		$fields = array();
+		while ($row = $mydb->fetchAssoc($result)) {
+			$fields[] = $row['Field'];
 		}
 	
 		return $fields;
 	}
+	
 	
 	function listofapplicant(){
 		global $mydb;
