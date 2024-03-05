@@ -9,24 +9,33 @@ class Autonumber {
         return $mydb->getfieldsononetable(self::$tblname);
     }
 
-    public static function loadResultList($sql) {
-        global $mydb;
-        $mydb->setQuery($sql);
-        $cur = $mydb->loadResultList();
-        return $cur;
-    }
-
     public static function single_autonumber($id = "") {
         global $mydb;
         $mydb->setQuery("SELECT * FROM " . self::$tblname . " WHERE AUTOID = '{$id}'");
-        $cur = self::loadResultList($mydb->getQuery());
+        $result = $mydb->query($mydb->getQuery());
+
+        if ($result) {
+            $cur = $result->fetch_assoc();
+        } else {
+            echo "Error: " . $mydb->error;
+            $cur = array();
+        }
+
         return $cur;
     }
 
     public static function set_autonumber($Autokey) {
         global $mydb;
-        $mydb->setQuery("SELECT concat(`AUTOSTART`, `AUTOEND`) AS 'AUTO' FROM " . self::$tblname . " WHERE AUTOKEY = '{$Autokey}'");
-        $cur = self::loadResultList($mydb->getQuery());
+        $mydb->setQuery("SELECT CONCAT(`AUTOSTART`, `AUTOEND`) AS 'AUTO' FROM " . self::$tblname . " WHERE AUTOKEY = '{$Autokey}'");
+        $result = $mydb->query($mydb->getQuery());
+
+        if ($result) {
+            $cur = $result->fetch_assoc();
+        } else {
+            echo "Error: " . $mydb->error;
+            $cur = array();
+        }
+
         return $cur;
     }
  
