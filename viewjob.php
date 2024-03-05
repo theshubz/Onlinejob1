@@ -1,4 +1,6 @@
 <?php
+require_once('include/database.php');
+
 if (isset($_GET['search'])) {
     $jobid = $_GET['search'];
 } else {
@@ -6,11 +8,11 @@ if (isset($_GET['search'])) {
 }
 
 $sql = "SELECT * FROM `tblcompany` c,`tbljob` j WHERE c.`COMPANYID`=j.`COMPANYID` AND JOBID LIKE '%" . $jobid . "%' ORDER BY DATEPOSTED DESC";
-$mydb->setQuery($sql);
-$result = $mydb->query();
+
+$result = mysqli_query($mydb, $sql);
 
 if ($result) {
-    while ($row = $result->fetch_object()) {
+    while ($row = mysqli_fetch_object($result)) {
 ?>
 <div class="container">
     <div class="mg-available-rooms">
