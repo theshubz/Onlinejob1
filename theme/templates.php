@@ -211,16 +211,29 @@ if ($result) {
         <div class="widget">
           <h4 class="widgetheading">Latest posts</h4>
           <ul class="link-list">
-            <?php 
-                  $sql = "SELECT * FROM `tblcompany` c,`tbljob` j WHERE c.`COMPANYID`=j.`COMPANYID`   ORDER BY DATEPOSTED DESC LIMIT 3" ;
-                  $mydb->setQuery($sql);
-                  $cur = $mydb->loadResultList();
+          <?php
+$mydb = new mysqli('opportunityjunction.mysql.database.azure.com', 'shubhamj', 'omkar@29', 'erisdb');
 
+if ($mydb->connect_errno) {
+    echo "Failed to connect to MySQL: " . $mydb->connect_error;
+    exit();
+}
 
-                  foreach ($cur as $result) {
-                    echo ' <li><a href="'.web_root.'index.php?q=viewjob&search='.$result->JOBID.'">'.$result->COMPANYNAME . '/ '. $result->OCCUPATIONTITLE .'</a></li>';
-                  } 
-              ?> 
+$sql = "SELECT c.*, j.* FROM `tblcompany` c INNER JOIN `tbljob` j ON c.`COMPANYID` = j.`COMPANYID` ORDER BY j.`DATEPOSTED` DESC LIMIT 3";
+$result = $mydb->query($sql);
+
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        echo '<li><a href="' . web_root . 'index.php?q=viewjob&search=' . $row['JOBID'] . '">' . $row['COMPANYNAME'] . ' / ' . $row['OCCUPATIONTITLE'] . '</a></li>';
+    }
+} else {
+    echo "Error: " . $mydb->error;
+}
+
+// Close the database connection
+$mydb->close();
+?>
+
           </ul>
         </div>
       </div>
