@@ -51,31 +51,26 @@
 
 <?php 
 require_once('include/database.php');
+ $sql = "SELECT * FROM `tblcompany`";
+      $mydb->query($sql);
+      $comp = $mydb->loadResultList();
 
-// Assuming you have a database connection object $mydb from database.php
 
-$sql = "SELECT * FROM `tblcompany`";
-$mydb->setQuery($sql);
-$compResult = $mydb->query();
+      foreach ($comp as $company ) {
+    
+    
+    ?>
+            <div class="col-sm-4 info-blocks">
+                <i class="icon-info-blocks fa fa-building-o"></i>
+                <div class="info-blocks-in">
+                    <h3><?php echo $company->COMPANYNAME;?></h3>
+                    <!-- <p><?php echo $company->COMPANYMISSION;?></p> -->
+                    <p>Address :<?php echo $company->COMPANYADDRESS;?></p>
+                    <p>Contact No. :<?php echo $company->COMPANYCONTACTNO;?></p>
+                </div>
+            </div>
 
-if ($compResult) {
-while ($company = $compResult->fetch_object()) {
-   // Your HTML rendering for each company goes here
-?>
-   <div class="col-sm-4 info-blocks">
-       <i class="icon-info-blocks fa fa-building-o"></i>
-       <div class="info-blocks-in">
-           <h3><?php echo $company->COMPANYNAME;?></h3>
-           <p>Address: <?php echo $company->COMPANYADDRESS;?></p>
-           <p>Contact No.: <?php echo $company->COMPANYCONTACTNO;?></p>
-       </div>
-   </div>
-<?php
-}
-} else {
-echo "Error executing query: " . $mydb->error;
-}
-?>
+    <?php } ?>
 
 </div>
 </section>
