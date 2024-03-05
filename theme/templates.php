@@ -84,7 +84,7 @@ if (isset($_SESSION['APPLICANTID'])) {
 ?>
 
                       <p   class="pull-right login"><a data-target="#myModal" data-toggle="modal" href=""> <i class="fa fa-lock"></i><b> Login</b> </a></p>
-                <?php } ?>
+               
               
               </div>
             </div>
