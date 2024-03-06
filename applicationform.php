@@ -1,6 +1,7 @@
 <section id="content">
   <div class="container content">     
  <?php
+ require_once(include/database.php);
 if (isset($_GET['search'])) {
 
 $jobid = $_GET['search'];
