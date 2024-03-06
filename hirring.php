@@ -19,20 +19,24 @@
      $COMPANYNAME = '';
 
  }
-    $sql = "SELECT * FROM `tblcompany` c,`tbljob` j WHERE c.`COMPANYID`=j.`COMPANYID` AND COMPANYNAME LIKE '%" . $COMPANYNAME ."%' ORDER BY DATEPOSTED DESC" ;
-    $mydb->setQuery($sql);
-    $cur = $mydb->loadResultList();
+ $sql = "SELECT * FROM tblcompany c, tbljob j WHERE c.COMPANYID = j.COMPANYID AND COMPANYNAME LIKE '%" . $COMPANYNAME . "%' ORDER BY DATEPOSTED DESC";
 
-
-    foreach ($cur as $result) {
-        echo '<tr>';
-        echo '<td><a href="index.php?q=viewjob&search='.$result->JOBID.'">'.$result->OCCUPATIONTITLE.'</a></td>';
-        echo '<td>'.$result->COMPANYNAME.'</td>';
-        echo '<td>'.$result->COMPANYADDRESS.'</td>';
-        echo '<td>'.date_format(date_create($result->DATEPOSTED),'m/d/Y').'</td>';
-        echo '</tr>';
-
-    }
+ $result = mysqli_query($mydb, $sql);
+ 
+ if (mysqli_num_rows($result) > 0) {
+    
+     while ($row = mysqli_fetch_assoc($result)) {
+         echo "<tr>";
+         echo '<td><a href="index.php?q=viewjob&search=' . $row["JOBID"] . '">' . $row["OCCUPATIONTITLE"] . '</a></td>';
+         echo "<td>" . $row["COMPANYNAME"] . "</td>";
+         echo "<td>" . $row["COMPANYADDRESS"] . "</td>";
+         echo "<td>" . date_format(date_create($row["DATEPOSTED"]), 'm/d/Y') . "</td>";
+         echo "</tr>";
+     }
+ } else {
+     echo "0 results";
+ }
+ 
         ?> 
      </tbody>
  </table>
