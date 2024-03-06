@@ -29,10 +29,13 @@ class Database {
 		}
 
 	}
-	
-	function setQuery($sql='') {
-		$this->sql_string=$sql;
+	function setQuery($sql='', $params=array()) {
+		$stmt = $this->conn->prepare($sql);
+		$stmt->bind_param("ss", $param1, $param2); // Bind parameters if needed
+		$stmt->execute();
+		// Handle result
 	}
+	
 	
 	function executeQuery() {
 		$result = mysqli_query($this->conn,$this->sql_string);
