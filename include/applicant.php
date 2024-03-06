@@ -181,7 +181,13 @@ class Applicants {
         if (!$mydb->executeQuery()) return false;
     }
 }
+// Instantiate MySQLi Object
 $mydb = new mysqli("opportunityjunction.mysql.database.azure.com", "shubhamj", "omkar@29", "erisdb");
+
+// Check for connection errors
+if ($mydb->connect_error) {
+    die("Connection failed: " . $mydb->connect_error);
+}
 
 // Instantiate Applicants Object with MySQLi Object
 $applicants = new Applicants($mydb);
