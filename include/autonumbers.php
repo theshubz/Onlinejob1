@@ -23,22 +23,19 @@ class Autonumber {
 
         return $cur;
     }
-
 	public static function set_autonumber($Autokey) {
 		global $mydb;
 		
-		// Establish a connection to the database
-		
 		// Check if the connection was successful
 		if ($mydb->connect_error) {
-			die("Connection failed: " . $conn->connect_error);
+			die("Connection failed: " . $mydb->connect_error);
 		}
 		
 		// Prepare the SQL query
 		$sql = "SELECT CONCAT(`AUTOSTART`, `AUTOEND`) AS 'AUTO' FROM " . self::$tblname . " WHERE AUTOKEY = '{$Autokey}'";
 		
 		// Execute the query
-		$result = $mydb->query($sql);
+		$result = $mydb->executeQuery($sql); // Assuming executeQuery() is a method in your Database class
 		
 		if ($result) {
 			// Fetch the result as an associative array
@@ -50,10 +47,11 @@ class Autonumber {
 		}
 		
 		// Close the database connection
-		$mydb->close();
+		$mydb->close_connection(); // Assuming close_connection() is a method in your Database class
 		
 		return $cur;
 	}
+	
 	
 
 	static function instantiate($record) {
