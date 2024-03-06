@@ -196,7 +196,7 @@ $sql = "INSERT INTO tblapplicants
 $mydb->setQuery($sql);
 
 // Execute the query
-$mydb->executeQuery();
+$mydb->executeQuery($sql);
 
 // Update the autonumber
 $autonum->auto_update('APPLICANT');
