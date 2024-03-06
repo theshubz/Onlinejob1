@@ -3,7 +3,9 @@ require_once('database.php');
 
 class Applicants {
     protected static $tblname = "tblapplicants";
-	global $mydb= new mysqli("opportunityjunction.mysql.database.azure.com","shubhamj","omkar@29","erisdb");
+	$mydb= new mysqli("opportunityjunction.mysql.database.azure.com","shubhamj","omkar@29","erisdb");
+	$applicants = new Applicants($db);
+
     public function dbfields($mydb) {
 		$fields = array();
 		$result = $mydb->query("DESCRIBE " . self::$tblname);
