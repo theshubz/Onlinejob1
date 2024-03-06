@@ -45,15 +45,12 @@ class Applicants {
 			$cur = $mydb->loadSingleResult();
 			return $cur;
 	}
-	function applicantAuthentication($U_USERNAME, $h_pass) {
-		global $mydb;
-	
+	function applicantAuthentication($U_USERNAME, $h_pass, $conn) {
 		$sql = "SELECT * FROM `tblapplicants` WHERE `USERNAME`=? AND `PASS`=?";
 		$params = array($U_USERNAME, $h_pass);
 	
-		$conn = $mydb->getConnection();
 		$stmt = $conn->prepare($sql);
-		
+	
 		if ($stmt === false) {
 			die("Error preparing statement: " . $conn->error);
 		}
@@ -78,6 +75,7 @@ class Applicants {
 			die("Error executing query: " . $conn->error);
 		}
 	}
+	
 	
 	
 
