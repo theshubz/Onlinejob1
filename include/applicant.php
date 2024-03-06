@@ -113,16 +113,17 @@ class Applicants {
 
 	 
 
-	static function instantiate($record) {
-		$object = new self;
-
-		foreach($record as $attribute=>$value){
+	public static function instantiate($record) {
+		$object = new Applicants();
+	
+		foreach($record as $attribute => $value){
 		  if($object->has_attribute($attribute)) {
-		    $object->$attribute = $value;
+			$object->$attribute = $value;
 		  }
 		} 
 		return $object;
 	}
+	
 	
 	
 	
