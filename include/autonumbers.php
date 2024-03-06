@@ -27,9 +27,9 @@ class Autonumber {
 		global $mydb;
 		
 		// Check if the connection was successful
-		if ($mydb->connect_error) {
+		/*if ($mydb->connect_error) {
 			die("Connection failed: " . $mydb->connect_error);
-		}
+		}*/
 		
 		// Prepare the SQL query
 		$sql = "SELECT CONCAT(`AUTOSTART`, `AUTOEND`) AS 'AUTO' FROM " . self::$tblname . " WHERE AUTOKEY = '{$Autokey}'";
