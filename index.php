@@ -16,7 +16,7 @@ switch ($view) {
 		$content='company.php';		
 		break;
 	case 'hiring' :
-		$title = "Hiring"; 
+		$title = "Hirring"; 
 		$content='hirring.php';		
 		break;
 	case 'category' :
