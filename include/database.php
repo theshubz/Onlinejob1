@@ -33,29 +33,10 @@ class Database {
 		$this->sql_string=$sql;
 	}
 	function executeQuery() {
-		// Check if the SQL query is empty
-		if (empty($this->sql_string)) {
-			die("Error: SQL query is empty");
-		}
-	
-		// Prepare the SQL statement
-		$stmt = $this->conn->prepare($this->sql_string);
-		if (!$stmt) {
-			// Handle query preparation error
-			die("Error in preparing SQL statement: " . $this->conn->error);
-		}
-	
-		// Execute the statement
-		$result = $stmt->execute();
-		if (!$result) {
-			// Handle query execution error
-			die("Error in executing SQL statement: " . $stmt->error);
-		}
-	
-		// Confirm the query and return the result
+		$result = mysqli_query($this->conn,$this->sql_string);
 		$this->confirm_query($result);
 		return $result;
-	}
+	}	
 	
 	
 	
