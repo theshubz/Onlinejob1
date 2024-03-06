@@ -186,12 +186,20 @@ function doRegister(){
 			$applicant->CONTACTNO = $_POST['TELNO'];
 			$applicant->DEGREE = $_POST['DEGREE'];
 			$applicant->create();
+$autonum = New Autonumber();
+$sql = "INSERT INTO tblapplicants 
+        (APPLICANTID, FNAME, LNAME, MNAME, ADDRESS, SEX, CIVILSTATUS, BIRTHDATE, BIRTHPLACE, AGE, USERNAME, PASS, EMAILADDRESS, CONTACTNO, DEGREE, APPLICANTPHOTO, NATIONALID) 
+        VALUES 
+        ('{$applicant->APPLICANTID}', '{$applicant->FNAME}', '{$applicant->LNAME}', '{$applicant->MNAME}', '{$applicant->ADDRESS}', '{$applicant->SEX}', '{$applicant->CIVILSTATUS}', '{$applicant->BIRTHDATE}', '{$applicant->BIRTHPLACE}', '{$applicant->AGE}', '{$applicant->USERNAME}', '{$applicant->PASS}', '{$applicant->EMAILADDRESS}', '{$applicant->CONTACTNO}', '{$applicant->DEGREE}', '{$applicant->APPLICANTPHOTO}', '{$applicant->NATIONALID}')";
 
+// Set the query
+$mydb->setQuery($sql);
 
- 
-			$autonum = New Autonumber();
-			$autonum->auto_update('APPLICANT');
+// Execute the query
+$mydb->executeQuery();
 
+// Update the autonumber
+$autonum->auto_update('APPLICANT');
 
 			message("You are successfully registered to the site. You can login now!","success");
 			redirect("index.php?q=success");
