@@ -36,12 +36,24 @@ class Database {
 		// Handle result
 	}
 	
-	
 	function executeQuery() {
-		$result = mysqli_query($this->conn,$this->sql_string);
+		$stmt = $this->conn->prepare($this->sql_string);
+		if (!$stmt) {
+			// Handle query preparation error
+			die("Error in preparing SQL statement: " . $this->conn->error);
+		}
+		
+		$result = $stmt->execute();
+		if (!$result) {
+			// Handle query execution error
+			die("Error in executing SQL statement: " . $stmt->error);
+		}
+	
+		// Confirm the query and return the result
 		$this->confirm_query($result);
 		return $result;
-	}	
+	}
+	
 	
 	private function confirm_query($result) {
 		if(!$result){
