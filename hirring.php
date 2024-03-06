@@ -1,5 +1,5 @@
 
-    <section id="content">
+<section id="content">
         <div class="container content">     
        
             
@@ -36,9 +36,7 @@
         ?> 
      </tbody>
  </table>
- <?php
- 
-  ?>    
+   
               <?php echo date_format(date_create($result->DATEPOSTED),'M d, Y'); ?></h5>
                         <div class="mg-avl-rooms">
                             <div class="mg-avl-room">
