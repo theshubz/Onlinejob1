@@ -12,7 +12,4 @@ $server_root = str_replace('config/config.php', '', $this_file);
 
 define('WEB_ROOT', $web_root);
 define('SERVER_ROOT', $server_root);
-require_once('include/config.php');
-
-
 ?>

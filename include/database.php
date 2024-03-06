@@ -1,53 +1,39 @@
 <?php
 require_once("config.php");
+
 class Database {
-	var $sql_string = '';
-	var $error_no = 0;
-	var $error_msg = '';
-	private $conn;
-	public $last_query;
-	private $real_escape_string_exists;
-	
-	function __construct() {
-		$this->open_connection();
-		$this->real_escape_string_exists = function_exists("mysqli_real_escape_string");
-	}
-	
-	public function open_connection() {
-		$this->conn = new mysqli(server,user,pass);
-		if(!$this->conn){
-			echo "Problem in database connection! Contact administrator!";
-			exit();
-		 
-		}else{
+    private $conn;
 
-			$db_select = mysqli_select_db($this->conn,database_name);
-			if (!$db_select) {
-				echo "Problem in selecting database! Contact administrator!";
-				exit();
-			}
-		}
+    public function __construct() {
+        $this->open_connection();
+    }
 
-	}
-	
-	function setQuery($sql='') {
-		$this->sql_string=$sql;
-	}
-	
-	function executeQuery() {
-		$result = mysqli_query($this->conn,$this->sql_string);
-		$this->confirm_query($result);
-		return $result;
-	}	
-	
-	private function confirm_query($result) {
-		if(!$result){
-			$this->error_no = mysqli_errno($this->conn);
-			$this->error_msg = mysqli_error($this->conn);
-			return false;				
-		}
-		return $result;
-	} 
+    public function open_connection() {
+        $this->conn = new mysqli(SERVER, USER, PASS, DATABASE_NAME);
+        if (!$this->conn) {
+            echo "Problem in database connection! Contact administrator!";
+            exit();
+        }
+    }
+
+    public function setQuery($sql='') {
+        $this->sql_string = $sql;
+    }
+
+    public function executeQuery() {
+        $result = mysqli_query($this->conn, $this->sql_string);
+        $this->confirm_query($result);
+        return $result;
+    }
+
+    private function confirm_query($result) {
+        if (!$result) {
+            $this->error_no = mysqli_errno($this->conn);
+            $this->error_msg = mysqli_error($this->conn);
+            return false;
+        }
+        return $result;
+    }
 	
 	function loadResultList( $key='' ) {
 		$cur = $this->executeQuery();
