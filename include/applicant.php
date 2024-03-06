@@ -3,54 +3,6 @@ require_once('database.php');
 class Applicants {
 	protected static  $tblname = "tblapplicants";
 
-	
-		// Other class methods and properties...
-	
-		public function create() {
-			global $mydb; // Assuming $mydb is your database connection object
-	
-			// Assuming the table name is 'applicants'
-			$sql = "INSERT INTO applicants (APPLICANTID, FNAME, LNAME, MNAME, ADDRESS, SEX, CIVILSTATUS, BIRTHDATE, BIRTHPLACE, AGE, USERNAME, PASS, EMAILADDRESS, CONTACTNO, DEGREE) 
-					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	
-			// Prepare the SQL statement
-			$stmt = $mydb->conn->prepare($sql);
-			if (!$stmt) {
-				die("Error in preparing SQL statement: " . $mydb->conn->error);
-			}
-	
-			// Bind parameters
-			$stmt->bind_param("sssssssssssssss", 
-				$this->APPLICANTID,
-				$this->FNAME,
-				$this->LNAME,
-				$this->MNAME,
-				$this->ADDRESS,
-				$this->SEX,
-				$this->CIVILSTATUS,
-				$this->BIRTHDATE,
-				$this->BIRTHPLACE,
-				$this->AGE,
-				$this->USERNAME,
-				$this->PASS,
-				$this->EMAILADDRESS,
-				$this->CONTACTNO,
-				$this->DEGREE
-			);
-	
-			// Execute the prepared statement
-			$stmt->execute();
-	
-			// Check for errors
-			if ($stmt->error) {
-				die("Error in executing SQL statement: " . $stmt->error);
-			}
-	
-			// Close the statement
-			$stmt->close();
-		}
-	}
-	
 	function dbfields () {
 		global $mydb;
 		return $mydb->getfieldsononetable(self::$tblname);
@@ -113,17 +65,16 @@ class Applicants {
 
 	 
 
- /*static function instantiate($record) {
-		$object = new Applicants();
-	
-		foreach($record as $attribute => $value){
+	static function instantiate($record) {
+		$object = new self;
+
+		foreach($record as $attribute=>$value){
 		  if($object->has_attribute($attribute)) {
-			$object->$attribute = $value;
+		    $object->$attribute = $value;
 		  }
 		} 
 		return $object;
 	}
-*/	
 	
 	
 	
