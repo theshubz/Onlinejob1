@@ -11,33 +11,29 @@
          <th>Date Posted</th>
      </thead>
      <tbody>
-     <?php
-require_once('include/database.php');
-
-if (isset($_GET['search'])) {
+        <?php
+ if (isset($_GET['search'])) {
+   
     $COMPANYNAME = $_GET['search'];
-} else {
-    $COMPANYNAME = '';
-}
+ }else{
+     $COMPANYNAME = '';
 
-$sql = "SELECT * FROM `tblcompany` c, `tbljob` j WHERE c.`COMPANYID` = j.`COMPANYID` AND COMPANYNAME LIKE '%" . $COMPANYNAME . "%' ORDER BY DATEPOSTED DESC";
+ }
+    $sql = "SELECT * FROM `tblcompany` c,`tbljob` j WHERE c.`COMPANYID`=j.`COMPANYID` AND COMPANYNAME LIKE '%" . $COMPANYNAME ."%' ORDER BY DATEPOSTED DESC" ;
+    $mydb->setQuery($sql);
+    $cur = $mydb->loadResultList();
 
-$result = mysqli_query($mydb, $sql);
 
-if ($result) {
-    while ($row = mysqli_fetch_object($result)) {
+    foreach ($cur as $result) {
         echo '<tr>';
-        echo '<td><a href="index.php?q=viewjob&search=' . $row->JOBID . '">' . $row->OCCUPATIONTITLE . '</a></td>';
-        echo '<td>' . $row->COMPANYNAME . '</td>';
-        echo '<td>' . $row->COMPANYADDRESS . '</td>';
-        echo '<td>' . date_format(date_create($row->DATEPOSTED), 'm/d/Y') . '</td>';
+        echo '<td><a href="'.web_root.'index.php?q=viewjob&search='.$result->JOBID.'">'.$result->OCCUPATIONTITLE.'</a></td>';
+        echo '<td>'.$result->COMPANYNAME.'</td>';
+        echo '<td>'.$result->COMPANYADDRESS.'</td>';
+        echo '<td>'.date_format(date_create($result->DATEPOSTED),'m/d/Y').'</td>';
         echo '</tr>';
-    }
-} else {
-    echo "No results found.";
-}
-?>
 
+    }
+        ?> 
      </tbody>
  </table>
  <?php
@@ -58,7 +54,7 @@ if ($result) {
                                                 <ul>
                                                     <li><i class="fp-ht-bed"></i>Required No. of Employee's : <?php echo $result->REQ_NO_EMPLOYEES; ?></li>
                                                     <li><i class="fp-ht-food"></i>Salaries : <?php echo number_format($result->SALARIES,2);  ?></li>
-                                                 <li><i class="fa fa-sun-"></i>Duration of Employment : <?php echo $result->DURATION_EMPLOYEMENT; ?></li>
+                                                    <li><i class="fa fa-sun-"></i>Duration of Employment : <?php echo $result->DURATION_EMPLOYEMENT; ?></li>
                                                 </ul>
                                             </div>
                                             <div class="col-sm-6">
@@ -69,7 +65,7 @@ if ($result) {
                                                 </ul>
                                             </div>
                                         </div>
-                                        <a href="index.php?q=apply&job=<?php echo $result->JOBID;?>&view=personalinfo" class="btn btn-main btn-next-tab">Apply Now !</a>
+                                        <a href="<?php echo web_root; ?>index.php?q=apply&job=<?php echo $result->JOBID;?>&view=personalinfo" class="btn btn-main btn-next-tab">Apply Now !</a>
                                     </div>
                                 </div>
                             </div> 
