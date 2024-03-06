@@ -5,12 +5,7 @@ class Applicants {
     protected static $tblname = "tblapplicants";
 
     public function dbfields($mydb) {
-		$fields = array();
-		$result = $mydb->query("DESCRIBE " . self::$tblname);
-		while ($row = $result->fetch_assoc()) {
-			$fields[] = $row['Field'];
-		}
-		return $fields;
+		return $mydb->getfieldsononetable(self::$tblname);
 	}
 	
 
