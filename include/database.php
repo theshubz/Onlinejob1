@@ -33,9 +33,8 @@ class Database {
 		$this->sql_string=$sql;
 		
 	}
-	function executeQuery($sql) {
-		
-		$result = mysqli_query($this->conn,$sql);
+	function executeQuery() {
+		$result = mysqli_query($this->conn,$this->sql_string);
 		$this->confirm_query($result);
 		return $result;
 	}	
