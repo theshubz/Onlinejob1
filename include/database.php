@@ -20,22 +20,11 @@ class Database {
         $this->sql_string = $sql;
     }
 
-    public function executeQuery() {
-        // Prepare the SQL statement
-        $stmt = $this->conn->prepare($this->sql_string);
-    
-        // Execute the prepared statement
-        $stmt->execute();
-    
-        // Get the result set
-        $result = $stmt->get_result();
-    
-        // Confirm the query and handle errors
-        $this->confirm_query($result);
-    
-        return $result;
-    }
-    
+    function executeQuery() {
+		$result = mysqli_query($this->conn,$this->sql_string);
+		$this->confirm_query($result);
+		return $result;
+	}
     
 
     private function confirm_query($result) {
