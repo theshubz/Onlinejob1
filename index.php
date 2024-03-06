@@ -15,11 +15,10 @@ switch ($view) {
         $title="Company";	
 		$content='company.php';		
 		break;
-	case 'hirring' :
-		$title = isset($_GET['search']) ? 'Hiring in ' . $_GET['search'] : 'Hiring'; 
-		$content = 'hirring.php';        
+	case 'hiring' :
+		$title = isset($_GET['search']) ? 'Hiring in '.$_GET['search'] :"Hiring"; 
+		$content='hirring.php';		
 		break;
-				
 	case 'category' :
         $title='Search for '. $_GET['search'];	
 		$content='category.php';		

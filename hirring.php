@@ -58,7 +58,7 @@ if ($result) {
                                                 <ul>
                                                     <li><i class="fp-ht-bed"></i>Required No. of Employee's : <?php echo $result->REQ_NO_EMPLOYEES; ?></li>
                                                     <li><i class="fp-ht-food"></i>Salaries : <?php echo number_format($result->SALARIES,2);  ?></li>
-                                                    <li><i class="fa fa-sun-"></i>Duration of Employment : <?php echo $result->DURATION_EMPLOYEMENT; ?></li>
+                                                 <li><i class="fa fa-sun-"></i>Duration of Employment : <?php echo $result->DURATION_EMPLOYEMENT; ?></li>
                                                 </ul>
                                             </div>
                                             <div class="col-sm-6">
