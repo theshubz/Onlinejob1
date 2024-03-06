@@ -21,7 +21,7 @@ class Database {
     }
 
     function executeQuery() {
-		$result = mysqli_query($this->conn,$this->sql_string);
+		$result = mysqli_query($this->mydb,$this->sql_string);
 		$this->confirm_query($result);
 		return $result;
 	}
