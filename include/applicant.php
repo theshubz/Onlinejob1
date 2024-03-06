@@ -113,7 +113,7 @@ class Applicants {
 
 	 
 
-	public static function instantiate($record) {
+ static function instantiate($record) {
 		$object = new Applicants();
 	
 		foreach($record as $attribute => $value){
