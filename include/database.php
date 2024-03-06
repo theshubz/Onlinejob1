@@ -49,6 +49,6 @@ class Database {
 }
 
 $mydb = new Database();
-$mydb= new mysqli("opportunityjunction.mysql.database.azure.com","shubhamj","omkar@29","erisdb");
+//$mydb= new mysqli("opportunityjunction.mysql.database.azure.com","shubhamj","omkar@29","erisdb");
 
 ?>
