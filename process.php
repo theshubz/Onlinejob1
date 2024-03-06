@@ -530,7 +530,7 @@ function doUpdate($jobid=0,$fileid=0) {
 	}
 }
 function doRegister(){
-	global $mydb;
+	
 	if (isset($_POST['btnRegister'])) { 
 			$birthdate =  $_POST['year'].'-'.$_POST['month'].'-'.$_POST['day'];
 
@@ -564,11 +564,20 @@ function doRegister(){
 			$applicant->create();
 
 			$autonum = New Autonumber();
-			$autonum->auto_update('APPLICANT');
+		
 
+			$sql = "INSERT INTO tblapplicants (APPLICANTID, FNAME, LNAME, MNAME, ADDRESS, SEX, CIVILSTATUS, BIRTHDATE, BIRTHPLACE, AGE, USERNAME, PASS, EMAILADDRESS, CONTACTNO, DEGREE) VALUES ('$applicantId', '$fname', '$lname', '$mname', '$address', '$sex', '$civilStatus', '$birthdate', '$birthplace', '$age', '$username', '$password', '$email', '$contactNo', '$degree')";
 
-			message("You are successfully registered to the site. You can login now!","success");
-			redirect("index.php?q=success");
+			$mydb->setQuery($sql);
+	
+			if ($mydb->executeQuery()) {
+				message("You are successfully registered to the site. You can login now!", "success");
+				redirect("index.php?q=success");
+			} else {
+				// Handle database error
+				message("Error: Failed to register. Please try again later.", "error");
+				redirect("index.php?q=register");
+			}
 			
 	 }
 }
