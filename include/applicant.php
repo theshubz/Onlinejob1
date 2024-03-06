@@ -3,9 +3,14 @@ require_once('database.php');
 
 class Applicants {
     protected static $tblname = "tblapplicants";
-
+	global $mydb= new mysqli("opportunityjunction.mysql.database.azure.com","shubhamj","omkar@29","erisdb");
     public function dbfields($mydb) {
-		return $mydb->getfieldsononetable(self::$tblname);
+		$fields = array();
+		$result = $mydb->query("DESCRIBE " . self::$tblname);
+		while ($row = $result->fetch_assoc()) {
+			$fields[] = $row['Field'];
+		}
+		return $fields;
 	}
 	
 
