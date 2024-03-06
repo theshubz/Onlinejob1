@@ -186,6 +186,4 @@ $mydb = new mysqli("opportunityjunction.mysql.database.azure.com", "shubhamj", "
 // Instantiate Applicants Object with MySQLi Object
 $applicants = new Applicants($mydb);
 
-// You can now use the $applicants object to call its methods, like dbfields()
-$fields = $applicants->dbfields();
 ?>
