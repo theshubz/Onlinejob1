@@ -30,12 +30,12 @@ class Database {
 
 	}
 	
-	function setQuery($sql) {
+	function setQuery($sql='') {
 		$this->sql_string=$sql;
 	}
 	
 	function executeQuery() {
-		$result = mysqli_query($mydb,$this->sql_string);
+		$result = mysqli_query($this->conn,$this->sql_string);
 		$this->confirm_query($result);
 		return $result;
 	}	
