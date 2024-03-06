@@ -45,7 +45,7 @@ class Applicants {
 			$cur = $mydb->loadSingleResult();
 			return $cur;
 	}
-	function applicantAuthentication($U_USERNAME, $h_pass, $conn) {
+	function applicantAuthentication($U_USERNAME, $h_pass) {
 		$sql = "SELECT * FROM `tblapplicants` WHERE `USERNAME`=? AND `PASS`=?";
 		$params = array($U_USERNAME, $h_pass);
 	
