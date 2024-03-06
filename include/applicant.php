@@ -2,18 +2,21 @@
 require_once('database.php');
 
 class Applicants {
-    protected static $tblname = "tblapplicants";
-	$mydb= new mysqli("opportunityjunction.mysql.database.azure.com","shubhamj","omkar@29","erisdb");
-	$applicants = new Applicants($db);
+	protected static $tblname = "tblapplicants";
+    protected $mydb;
 
-    public function dbfields($mydb) {
-		$fields = array();
-		$result = $mydb->query("DESCRIBE " . self::$tblname);
-		while ($row = $result->fetch_assoc()) {
-			$fields[] = $row['Field'];
-		}
-		return $fields;
-	}
+    public function __construct($db) {
+        $this->mydb = $db;
+    }
+
+    public function dbfields() {
+        $fields = array();
+        $result = $this->mydb->query("DESCRIBE " . self::$tblname);
+        while ($row = $result->fetch_assoc()) {
+            $fields[] = $row['Field'];
+        }
+        return $fields;
+    }
 	
 
     public function listofapplicant() {
@@ -178,4 +181,11 @@ class Applicants {
         if (!$mydb->executeQuery()) return false;
     }
 }
+$mydb = new mysqli("opportunityjunction.mysql.database.azure.com", "shubhamj", "omkar@29", "erisdb");
+
+// Instantiate Applicants Object with MySQLi Object
+$applicants = new Applicants($mydb);
+
+// You can now use the $applicants object to call its methods, like dbfields()
+$fields = $applicants->dbfields();
 ?>
