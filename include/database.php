@@ -21,17 +21,21 @@ class Database {
     }
 
     public function executeQuery() {
-        // Check if the SQL query string is empty
-       
+        // Prepare the SQL statement
+        $stmt = $this->conn->prepare($this->sql_string);
     
-        // Execute the SQL query
-        $result = mysqli_query($this->conn, $this->sql_string);
+        // Execute the prepared statement
+        $stmt->execute();
+    
+        // Get the result set
+        $result = $stmt->get_result();
     
         // Confirm the query and handle errors
         $this->confirm_query($result);
     
         return $result;
     }
+    
     
 
     private function confirm_query($result) {
