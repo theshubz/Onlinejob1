@@ -10,7 +10,19 @@ $jobid = '';
 
 }
 $sql = "SELECT * FROM `tblcompany` c,`tbljob` j WHERE c.`COMPANYID`=j.`COMPANYID` AND JOBID LIKE '%" . $jobid ."%' ORDER BY DATEPOSTED DESC" ;
-$mydb->setQuery($sql);
+$result = $mydb->query($sql);
+
+if ($result) {
+    // Fetch the result as an associative array
+    $row = $result->fetch_assoc();
+    // You can then use $row to access the fields of the result set
+} else {
+    echo "Error executing query: " . $mydb->error;
+}
+
+// Free the result set
+$result->free();
+
 $result = $mydb->loadSingleResult();
 
 ?> 
