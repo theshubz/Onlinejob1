@@ -557,7 +557,7 @@ function doRegister(){
 			$degree = $_POST['DEGREE'];
 	
 			$sql = "INSERT INTO tblapplicants (APPLICANTID, FNAME, LNAME, MNAME, ADDRESS, SEX, CIVILSTATUS, BIRTHDATE, BIRTHPLACE, AGE, USERNAME, PASS, EMAILADDRESS, CONTACTNO, DEGREE) VALUES ('$applicantId', '$fname', '$lname', '$mname', '$address', '$sex', '$civilStatus', '$birthdate', '$birthplace', '$age', '$username', '$password', '$email', '$contactNo', '$degree')";
-	
+			$mydb->setQuery($sql);
 			// Execute the query directly using the Database class
 			if ($mydb->query($sql)) {
 				message("You are successfully registered to the site. You can login now!", "success");
