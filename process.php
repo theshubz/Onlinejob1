@@ -31,7 +31,7 @@ function doSubmitApplication() {
 
 		if ($picture=="") {
 			
-			redirect(web_root."index.php?q=apply&job=".$jobid."&view=personalinfo");
+			redirect("index.php?q=apply&job=".$jobid."&view=personalinfo");
 		}else{ 
 			
 			if (isset($_SESSION['APPLICANTID'])) {

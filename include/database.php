@@ -22,9 +22,7 @@ class Database {
 
     public function executeQuery() {
         // Check if the SQL query string is empty
-        if (empty($this->sql_string)) {
-            die("Error: SQL query string is empty.");
-        }
+       
     
         // Execute the SQL query
         $result = mysqli_query($this->conn, $this->sql_string);
