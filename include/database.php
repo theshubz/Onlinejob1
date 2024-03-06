@@ -29,11 +29,8 @@ class Database {
 		}
 
 	}
-	function setQuery($sql='', $params=array()) {
-		$stmt = $this->conn->prepare($sql);
-		$stmt->bind_param("ss", $param1, $param2); // Bind parameters if needed
-		$stmt->execute();
-		// Handle result
+	function setQuery($sql='') {
+		$this->sql_string=$sql;
 	}
 	function executeQuery() {
 		// Check if the SQL query is empty
