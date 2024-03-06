@@ -27,7 +27,7 @@ $result = mysqli_query($mydb, $sql);
 if ($result) {
     while ($row = mysqli_fetch_object($result)) {
         echo '<tr>';
-        echo '<td><a href="' . web_root . 'index.php?q=viewjob&search=' . $row->JOBID . '">' . $row->OCCUPATIONTITLE . '</a></td>';
+        echo '<td><a href="index.php?q=viewjob&search=' . $row->JOBID . '">' . $row->OCCUPATIONTITLE . '</a></td>';
         echo '<td>' . $row->COMPANYNAME . '</td>';
         echo '<td>' . $row->COMPANYADDRESS . '</td>';
         echo '<td>' . date_format(date_create($row->DATEPOSTED), 'm/d/Y') . '</td>';
