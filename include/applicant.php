@@ -3,7 +3,7 @@ require_once('database.php');
 class Applicants {
 	protected static  $tblname = "tblapplicants";
 
-	class Applicants {
+	
 		// Other class methods and properties...
 	
 		public function create() {
