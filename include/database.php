@@ -35,14 +35,20 @@ class Database {
 		$stmt->execute();
 		// Handle result
 	}
-	
 	function executeQuery() {
+		// Check if the SQL query is empty
+		if (empty($this->sql_string)) {
+			die("Error: SQL query is empty");
+		}
+	
+		// Prepare the SQL statement
 		$stmt = $this->conn->prepare($this->sql_string);
 		if (!$stmt) {
 			// Handle query preparation error
 			die("Error in preparing SQL statement: " . $this->conn->error);
 		}
-		
+	
+		// Execute the statement
 		$result = $stmt->execute();
 		if (!$result) {
 			// Handle query execution error
@@ -53,6 +59,7 @@ class Database {
 		$this->confirm_query($result);
 		return $result;
 	}
+	
 	
 	
 	private function confirm_query($result) {
