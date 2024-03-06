@@ -21,7 +21,7 @@ class Database {
 		 
 		}else{
 
-			$db_select = mysqli_select_db($this->conn,DATABASE_NAME);
+			$db_select = mysqli_select_db($this->conn,database_name);
 			if (!$db_select) {
 				echo "Problem in selecting database! Contact administrator!";
 				exit();
@@ -29,17 +29,16 @@ class Database {
 		}
 
 	}
-	function setQuery($sql) {
+	
+	function setQuery($sql='') {
 		$this->sql_string=$sql;
-		
 	}
+	
 	function executeQuery() {
 		$result = mysqli_query($this->conn,$this->sql_string);
 		$this->confirm_query($result);
 		return $result;
 	}	
-	
-	
 	
 	private function confirm_query($result) {
 		if(!$result){
