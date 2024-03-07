@@ -112,24 +112,24 @@ class Applicants {
 	  return isset($this->id) ? $this->update() : $this->create();
 	}
 	
-	public function create($mydb) {
+	public function create() {
+		global $mydb;
+		
 		$attributes = $this->sanitized_attributes();
-		$sql = "INSERT INTO " . self::$tblname . " (";
+		$sql = "INSERT INTO ".self::$tblname." (";
 		$sql .= join(", ", array_keys($attributes));
 		$sql .= ") VALUES ('";
 		$sql .= join("', '", array_values($attributes));
 		$sql .= "')";
+	echo $mydb->setQuery($sql);
 	
-		$mydb->setQuery($sql);
-	
-		if ($mydb->executeQuery()) {
-			$this->id = $mydb->insert_id();
-			return true;
-		} else {
-			return false;
-		}
+	 if($mydb->executeQuery()) {
+	    $this->id = $mydb->insert_id();
+	    return true;
+	  } else {
+	    return false;
+	  }
 	}
-	
 
 	public function update($id='') {
 	  global $mydb;
